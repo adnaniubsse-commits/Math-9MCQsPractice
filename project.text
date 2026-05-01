@@ -1,0 +1,36 @@
+# Project Summary: 9th Math MCQ Practice App
+**Date:** May 1, 2026
+
+## 1. Project Overview
+A web-based MCQ practice application for 9th-grade Mathematics (ALP 2026 syllabus). The app is built with HTML, CSS, and JavaScript.
+
+## 2. Key Files
+- `index.html`: The main application file containing the quiz logic and styling.
+- `logo.png`: The academy logo (renamed from `Logo.png.jpeg` for compatibility).
+- `mat9mcq`: A backup or secondary version of the HTML file.
+
+## 3. Local Development
+- **Local Server:** The project can be run locally using Python:
+  `python -m http.server 8000`
+- **Access:** Local URL: [http://localhost:8000](http://localhost:8000)
+
+## 4. GitHub Deployment
+- **Repository:** [https://github.com/adnaniubsse-commits/Math-9MCQsPractice](https://github.com/adnaniubsse-commits/Math-9MCQsPractice)
+- **Status:** Files pushed to `main` branch.
+- **Commit History:** Initial commit made with identity "Adnan".
+
+## 5. Deployment Instructions (GitHub Pages)
+To make the site live:
+1. Go to **Settings > Pages** in the GitHub repo.
+2. Select **Source:** "Deploy from a branch".
+3. Select **Branch:** `main` and click **Save**.
+4. Check **Actions** tab for "pages-build-deployment" status (wait for green checkmark ✅).
+5. The live link will be: `https://adnaniubsse-commits.github.io/Math-9MCQsPractice/`
+
+## 6. Current Session Troubleshooting
+- **Issue:** 404 error on the live link or redirected to the code page.
+- **Cause:** GitHub Pages build hasn't finished or the branch setting hasn't triggered the deployment.
+- **Next Step:** If the build doesn't start, make a small edit to `index.html` directly on GitHub to force a new build trigger.
+
+---
+*Created by Gemini CLI*
