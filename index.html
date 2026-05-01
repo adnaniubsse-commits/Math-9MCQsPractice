@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Teachers Academy Bahawalpur | 9th Math ALP 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4ff 0%, #d9e2fb 100%);
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
+            padding: 20px 16px 40px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(2px);
+            border-radius: 48px 32px 48px 32px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            padding: 24px 20px 32px;
+        }
+
+        .academy-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .logo-preview {
+            width: 110px;
+            height: 110px;
+            background: #f8f3e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            box-shadow: 0 12px 18px -8px rgba(0,0,0,0.2);
+            border: 3px solid #ffd966;
+            overflow: hidden;
+            background: white;
+        }
+        .logo-preview img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+        }
+        .welcome-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3c72, #2b5e8a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .academy-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #b8860b;
+        }
+        .alp-badge {
+            background: #2e7d32;
+            color: white;
+            font-size: 0.7rem;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 30px;
+            margin-top: 8px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0 20px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            border: none;
+            font-weight: 700;
+            padding: 14px 30px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+            transition: 0.2s;
+            font-family: inherit;
+            width: 170px;
+        }
+        .btn-teacher { background: #2c3e66; color: white; }
+        .btn-student { background: #e6b422; color: #2c2b28; }
+        .btn-share { 
+            background: #25D366; 
+            color: white; 
+            width: auto;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+        .btn:active { transform: scale(0.96); }
+        .form-card {
+            background: #fefcf5;
+            border-radius: 32px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            margin: 8px 0 16px;
+            border-radius: 60px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            background: white;
+        }
+        .warning {
+            color: #c0392b;
+            font-size: 0.7rem;
+            margin-top: -12px;
+            margin-bottom: 12px;
+        }
+        .chapter-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+            max-height: 480px;
+            overflow-y: auto;
+        }
+        .chapter-btn {
+            background: linear-gradient(135deg, #e9ecf5, #dfe4f0);
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #1e4668;
+            flex: 1 0 auto;
+            min-width: 150px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .mcq-question {
+            background: white;
+            border-radius: 28px;
+            padding: 18px;
+            margin-bottom: 18px;
+            border-left: 8px solid #e6b422;
+        }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 40px;
+            background: #f5f5f5;
+        }
+        .submit-test {
+            background: #2e7d32;
+            color: white;
+            width: 100%;
+            padding: 16px;
+            font-size: 1.2rem;
+            border-radius: 44px;
+            margin: 20px 0 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .result-card {
+            background: linear-gradient(120deg, #f9f3e0, #fff2db);
+            border-radius: 28px;
+            padding: 24px;
+            margin-top: 20px;
+            border: 2px solid #ffcd7e;
+        }
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            margin-top: 18px;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .teacher-data {
+            background: #1e2a3a;
+            color: #eee;
+            border-radius: 28px;
+            padding: 18px;
+            overflow-x: auto;
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #555; }
+        .download-pdf-btn {
+            background: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            border: none;
+            margin: 15px 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .score-badge {
+            background: #2c3e66;
+            color: white;
+            border-radius: 30px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .alp-note {
+            background: #e8f0fe;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .share-section {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .copy-link-btn {
+            background: #607d8b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .flex-between {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        h3 { margin-bottom: 15px; color: #1e3c72; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<div class="container" id="appRoot">
+    <div style="text-align: center; padding: 40px;">Loading...</div>
+</div>
+
+<script>
+    // ======================== YOUR LOGO - Place logo.png in same folder ========================
+    // The logo will load automatically from "logo.png" file
+    // If file doesn't exist, it shows a default academy icon
+    const LOGO_PATH = "logo.png";
+    let logoImageHTML = '<div style="font-size: 3rem;">🏫</div>';
+    
+    // Try to load your logo
+    function loadLogo() {
+        const img = new Image();
+        img.onload = function() {
+            logoImageHTML = `<img src="${LOGO_PATH}" alt="Teachers Academy Logo" style="width:100%; height:100%; object-fit:contain;">`;
+            render(); // Re-render to show logo
+        };
+        img.onerror = function() {
+            // Logo file not found, show default
+            logoImageHTML = '<div style="font-size: 3rem;">🏫</div>';
+        };
+        img.src = LOGO_PATH;
+    }
+    
+    // ======================== 9TH MATH MCQs (ALP 2026) ========================
+    const MATH_CHAPTERS = {
+        "chap1": { name: "📖 Ch 1: Real Numbers", questions: [
+            { text: "√7 is a:", options: ["Integer", "Rational", "Irrational", "Natural"], correct: 2 },
+            { text: "π (pi) is a:", options: ["Natural", "Integer", "Rational", "Irrational"], correct: 3 },
+            { text: "√75 + √27 = ?", options: ["√102", "9√3", "5√3", "8√3"], correct: 1 },
+            { text: "Product of (3+√5)(3-√5) is:", options: ["Prime", "Odd", "Irrational", "Rational"], correct: 3 },
+            { text: "For all x ∈ R, x = x is called:", options: ["Reflexive", "Transitive", "Symmetric", "Trichotomy"], correct: 0 }
+        ]},
+        "chap2": { name: "📊 Ch 2: Logarithms", questions: [
+            { text: "The base of common logarithm is:", options: ["2", "10", "5", "e"], correct: 1 },
+            { text: "log 100 = ?", options: ["2", "3", "10", "1"], correct: 0 },
+            { text: "log 1 = ?", options: ["0", "1", "10", "e"], correct: 0 },
+            { text: "log 5 + log 3 = ?", options: ["log 0", "log 2", "log(5/3)", "log 15"], correct: 3 },
+            { text: "3⁴ = 81 in log form is:", options: ["log₃4=81", "log₄3=81", "log₃81=4", "log₄81=3/4"], correct: 2 }
+        ]},
+        "chap3": { name: "🔢 Ch 3: Sets & Functions", questions: [
+            { text: "If A = { }, then P(A) is:", options: ["{ }", "{1}", "{{ }}", "φ"], correct: 2 },
+            { text: "If n(A∪B)=50, n(A)=30, n(B)=35, then n(A∩B)=?", options: ["23", "15", "9", "40"], correct: 1 },
+            { text: "If f(x)=x²+3x+2, then f(a+1) = ?", options: ["a+1", "a²+1", "a²+2a+1", "a²+5a+6"], correct: 3 },
+            { text: "Given f(x)=3x+1, if f(x)=28 then x = ?", options: ["9", "27", "3", "18"], correct: 0 }
+        ]},
+        "chap4": { name: "✖️ Ch 4: Factorization", questions: [
+            { text: "Factors of x²-5x+6 are:", options: ["(x+2)(x+3)", "(x+6)(x-1)", "(x-2)(x-3)", "(x+1)(x-6)"], correct: 2 },
+            { text: "HCF of a³b³ and ab² is:", options: ["a³b³", "ab²", "a⁴b⁵", "a²b"], correct: 1 },
+            { text: "Square root of x²-6x+9 is:", options: ["±(x-3)", "±(x+3)", "x-3", "x+3"], correct: 0 },
+            { text: "Factorization of x³+3x²+3x+1 is:", options: ["(x+1)³", "(x-1)³", "(x-1)(x²-x+1)", "(x-1)(x²+x+1)"], correct: 0 }
+        ]},
+        "chap5": { name: "📏 Ch 5: Linear Equations", questions: [
+            { text: "Solution of 5x-10=10 is:", options: ["0", "50", "4", "-4"], correct: 2 },
+            { text: "If 7x+4 < 6x+6, then x belongs to:", options: ["(2,∞)", "[2,∞)", "(-∞,2)", "(-∞,2]"], correct: 2 },
+            { text: "3x+4<0 is:", options: ["Equation", "Inequality", "Not inequality", "Identity"], correct: 1 },
+            { text: "Solve: 12x+30 = -6", options: ["x=2", "x=-3", "x=4", "x=-2"], correct: 1 }
+        ]},
+        "chap6": { name: "📐 Ch 6: Trigonometry", questions: [
+            { text: "sin 60° = ?", options: ["1", "1/2", "√3/2", "1/√2"], correct: 2 },
+            { text: "sec²θ - tan²θ = ?", options: ["sin²θ", "1", "cos²θ", "cot²θ"], correct: 1 },
+            { text: "Convert 315° to radians:", options: ["7π/4", "5π/4", "3π/2", "11π/6"], correct: 0 }
+        ]},
+        "chap7": { name: "📍 Ch 7: Coordinate Geometry", questions: [
+            { text: "Distance between P(1,2) and Q(4,6) is:", options: ["5", "6", "√13", "4"], correct: 0 },
+            { text: "Midpoint of (-2,4) and (6,-2) is:", options: ["(4,2)", "(2,1)", "(1,1)", "(0,0)"], correct: 1 },
+            { text: "Slope of line y=5x+3 is:", options: ["3", "-3", "5", "-5"], correct: 2 }
+        ]},
+        "chap9": { name: "🔺 Ch 9: Similar Figures", questions: [
+            { text: "If two polygons are similar, then:", options: ["Corresponding angles equal", "Areas equal", "Volumes equal", "Sides equal"], correct: 0 },
+            { text: "Ratio of areas of similar polygons is:", options: ["Ratio of perimeters", "Square of ratio of sides", "Cube of ratio", "Sum of sides"], correct: 1 },
+            { text: "Exterior angle of regular pentagon:", options: ["40°", "45°", "60°", "72°"], correct: 3 }
+        ]},
+        "chap10": { name: "📈 Ch 10: Graphs of Functions", questions: [
+            { text: "x=5 represents:", options: ["x-axis", "y-axis", "line || to x-axis", "line || to y-axis"], correct: 3 },
+            { text: "The graph of y = x² - 9 opens:", options: ["Upward", "Downward", "Left", "Right"], correct: 0 },
+            { text: "y = 5ˣ is ___ function:", options: ["Linear", "Quadratic", "Cubic", "Exponential"], correct: 3 }
+        ]},
+        "chap11": { name: "✂️ Ch 11: Loci & Construction", questions: [
+            { text: "Locus equidistant from a fixed point is:", options: ["Circle", "Perp bisector", "Angle bisector", "Line"], correct: 0 },
+            { text: "Locus equidistant from two fixed points is:", options: ["Circle", "Perp bisector", "Angle bisector", "Line"], correct: 1 },
+            { text: "Angle bisectors of triangle intersect at:", options: ["One point", "Two points", "Three points", "Four points"], correct: 0 }
+        ]},
+        "chap12": { name: "📊 Ch 12: Statistics", questions: [
+            { text: "If mean of 5,7,8,9,x is 7.5, then x = ?", options: ["10", "8", "8.5", "5.8"], correct: 2 },
+            { text: "Median of 110,125,122,130,124,127,120 is:", options: ["124", "120", "125", "127"], correct: 0 },
+            { text: "Mode of 2,5,8,9,0,1,3,7,10 is:", options: ["5", "7", "0", "No mode"], correct: 3 }
+        ]},
+        "chap13": { name: "🎲 Ch 13: Probability", questions: [
+            { text: "Probability of double 2 on two dice:", options: ["1/6", "1/3", "5/6", "1/36"], correct: 3 },
+            { text: "Probability of number divisible by 3 on dice:", options: ["1/6", "1/3", "1/2", "2/3"], correct: 1 },
+            { text: "Each element of sample space is called:", options: ["Event", "Experiment", "Sample point", "Outcome"], correct: 2 }
+        ]}
+    };
+
+    // Global state
+    let studentsData = [];
+    let chapterAttempts = {};
+    let reattemptRequests = {};
+    let currentView = "welcome";
+    let currentStudent = null;
+    let currentChapter = null;
+    let currentQuestions = [];
+    let userAnswers = [];
+    let resultData = null;
+
+    function loadData() {
+        try {
+            const stored = localStorage.getItem("TeachersAcademy_ALP_Data");
+            if(stored) {
+                const data = JSON.parse(stored);
+                studentsData = data.studentsData || [];
+                chapterAttempts = data.chapterAttempts || {};
+                reattemptRequests = data.reattemptRequests || {};
+            }
+        } catch(e) { console.log("load error", e); }
+    }
+    
+    function saveData() {
+        localStorage.setItem("TeachersAcademy_ALP_Data", JSON.stringify({ 
+            studentsData, chapterAttempts, reattemptRequests 
+        }));
+    }
+    
+    function getAttemptsLeft(phone, chapId) { 
+        return Math.max(0, 2 - (chapterAttempts[`${phone}_${chapId}`] || 0)); 
+    }
+    
+    function incrementAttempt(phone, chapId) { 
+        chapterAttempts[`${phone}_${chapId}`] = (chapterAttempts[`${phone}_${chapId}`] || 0) + 1; 
+        saveData(); 
+    }
+    
+    function hasRequested(phone, chapId) { 
+        return reattemptRequests[`${phone}_${chapId}`] === true; 
+    }
+    
+    function setRequest(phone, chapId, val) { 
+        reattemptRequests[`${phone}_${chapId}`] = val; 
+        saveData(); 
+    }
+
+    function shareApp() {
+        const url = window.location.href;
+        if (navigator.share) {
+            navigator.share({
+                title: 'Teachers Academy - Math MCQ',
+                text: '9th Class Math ALP 2026 Practice Platform',
+                url: url
+            }).catch(() => copyToClipboard(url));
+        } else {
+            copyToClipboard(url);
+        }
+    }
+    
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("✅ Link copied!\n\nShare with your students: " + text);
+        }).catch(() => {
+            prompt("📋 Copy this link to share:", text);
+        });
+    }
+
+    function render() {
+        const root = document.getElementById("appRoot");
+        if(currentView === "welcome") root.innerHTML = renderWelcome();
+        else if(currentView === "teacherPanel") root.innerHTML = renderTeacherPanel();
+        else if(currentView === "studentForm") root.innerHTML = renderStudentForm();
+        else if(currentView === "testPanel") root.innerHTML = renderTestPanel();
+        else if(currentView === "resultPanel") root.innerHTML = renderResultPanel();
+        attachEvents();
+    }
+
+    function renderWelcome() {
+        return `
+            <div class="academy-header">
+                <div class="logo-preview">
+                    ${logoImageHTML}
+                </div>
+                <div class="welcome-text">✨ Teachers Academy ✨</div>
+                <div class="academy-name">Bahawalpur | ALP 2026 📐</div>
+                <div class="alp-badge">📖 Smart Syllabus 2025-26 | 9th Mathematics</div>
+                <div class="alp-note">✅ Full ALP coverage as per PECTAA notification 07.11.2025</div>
+                <div class="share-section">
+                    <button class="btn btn-share" id="shareAppBtn">📤 Share with Students</button>
+                    <button class="copy-link-btn" id="copyLinkBtn">🔗 Copy Link</button>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-teacher" data-action="teacher">👨‍🏫 Teacher</button>
+                <button class="btn btn-student" data-action="student">📚 Student</button>
+            </div>
+            <div style="text-align: center; font-size: 0.7rem; margin-top: 20px; color: #666;">
+                Chapter-wise MCQ tests | Result cards | 2 attempts per chapter
+            </div>
+        `;
+    }
+
+    function renderTeacherPanel() {
+        return `
+            <div class="form-card">
+                <h3>🔐 Teacher Dashboard</h3>
+                <input type="password" id="teacherPass" placeholder="Enter password">
+                <button id="verifyTeacherBtn" class="btn" style="background:#2c3e66;color:white;width:100%;">Unlock</button>
+                <div id="teacherDataView"></div>
+            </div>
+            <button class="back-btn" data-action="backWelcome">⬅ Back to Home</button>
+        `;
+    }
+
+    function renderStudentForm() {
+        return `
+            <div class="form-card">
+                <h3>📝 Student Registration</h3>
+                <input type="text" id="studentName" placeholder="Full Name">
+                <input type="text" id="fatherName" placeholder="Father Name">
+                <input type="tel" id="phoneNum" placeholder="03XX-XXXXXXX">
+                <div class="warning">⚠️ Use correct number. Max 3 students per number.</div>
+                <input type="text" id="schoolName" placeholder="School Name">
+                <input type="text" id="cityName" placeholder="City">
+                <button id="registerStudentBtn" class="btn" style="background:#e6b422;width:100%;">✅ Start Practice</button>
+            </div>
+            <button class="back-btn" data-action="backWelcome">⬅ Back to Home</button>
+        `;
+    }
+
+    function renderTestPanel() {
+        if(!currentStudent) return "<div>Error</div>";
+        if(!currentChapter) {
+            let chapHtml = `<div class="form-card"><h3>📘 Salam ${escapeHtml(currentStudent.name)}</h3><div class="alp-note">📌 Select a chapter to start</div><div class="chapter-grid">`;
+            for(let [key, chap] of Object.entries(MATH_CHAPTERS)) {
+                let left = getAttemptsLeft(currentStudent.phone, key);
+                let status = left===0 ? "❌ Finished" : left===1 ? "⚠️ 1 left" : "✅ 2 left";
+                let req = hasRequested(currentStudent.phone, key) ? " 🔔 Requested" : "";
+                chapHtml += `<button data-chapter="${key}" class="chapter-btn" ${left===0 ? 'style="opacity:0.6;"' : ''}>${chap.name}<br><span class="score-badge">${status}${req}</span></button>`;
+            }
+            chapHtml += `</div></div><button class="back-btn" data-action="backWelcome">🏠 Home</button>`;
+            return chapHtml;
+        } else {
+            let chap = MATH_CHAPTERS[currentChapter];
+            let html = `<div class="form-card"><h3>${chap.name}</h3><p>✅ Attempted: ${userAnswers.filter(a=>a!==-1).length}/${chap.questions.length}</p>`;
+            chap.questions.forEach((q, idx) => {
+                let selected = userAnswers[idx] !== undefined ? userAnswers[idx] : -1;
+                html += `<div class="mcq-question"><strong>${idx+1}. ${escapeHtml(q.text)}</strong><div class="options">`;
+                q.options.forEach((opt, optIdx) => {
+                    let letter = String.fromCharCode(65+optIdx);
+                    html += `<label><input type="radio" name="q${idx}" value="${optIdx}" ${selected===optIdx ? 'checked' : ''}> <strong>${letter}.</strong> ${escapeHtml(opt)}</label>`;
+                });
+                html += `</div></div>`;
+            });
+            html += `<button id="finalSubmitTest" class="submit-test">📊 Submit Test & Get Result</button>`;
+            html += `<button class="back-btn" data-action="backToChapters">◀ Back to Chapters</button></div>`;
+            return html;
+        }
+    }
+
+    function renderResultPanel() {
+        if(!resultData) return "<div>Error</div>";
+        let chap = MATH_CHAPTERS[resultData.chapterId];
+        let html = `<div class="result-card"><div class="flex-between"><div class="logo-preview" style="width:50px; height:50px;">${logoImageHTML}</div><div><strong>Teachers Academy Bahawalpur</strong><br><small>ALP 2026 Result</small></div></div>
+            <h3>🎓 Result Card</h3>
+            <p><strong>Student:</strong> ${escapeHtml(currentStudent.name)}<br>
+            <strong>Father:</strong> ${escapeHtml(currentStudent.father)}<br>
+            <strong>Contact:</strong> ${currentStudent.phone}<br>
+            <strong>School:</strong> ${escapeHtml(currentStudent.school)}</p>
+            <p><strong>Chapter:</strong> ${chap.name}</p>
+            <p><strong>Score:</strong> ${resultData.score} / ${resultData.total}</p>
+            <p>✅ Correct: ${resultData.correctCount} &nbsp;| ❌ Wrong: ${resultData.wrongCount}</p>`;
+        
+        if(resultData.wrongList.length > 0) {
+            html += `<div style="margin-top:12px;"><strong>⚠️ Incorrect & Correct Answers:</strong><ul>`;
+            resultData.wrongList.forEach(w => {
+                html += `<li><strong>Q${w.qno}:</strong> ${escapeHtml(w.questionText)}<br> ➤ Your: ${escapeHtml(w.selected)} &nbsp; ✅ Correct: ${escapeHtml(w.correctOption)}</li>`;
+            });
+            html += `</ul></div>`;
+        } else { html += `<p>🏆 Perfect score! Well done.</p>`; }
+        
+        let left = getAttemptsLeft(currentStudent.phone, resultData.chapterId);
+        let requested = hasRequested(currentStudent.phone, resultData.chapterId);
+        if(left > 0 && !requested) html += `<button id="reattemptBtn" class="btn" style="background:#f39c12;width:100%;margin-top:15px;">🔄 Re-attempt (${left} left)</button>`;
+        else if(left === 0 && !requested) html += `<button id="requestReattemptBtn" class="btn" style="background:#9b59b6;width:100%;margin-top:15px;">📢 Request Re-attempt to Teacher</button>`;
+        else if(requested) html += `<div style="background:#ffe0b3;padding:10px;border-radius:30px;margin-top:15px;">⏳ Request sent to teacher. Approval pending.</div>`;
+        
+        html += `<button class="back-btn" data-action="backToChaptersFromResult" style="margin-top:15px;">📚 More Chapters</button>
+                 <button class="back-btn" data-action="backWelcome">🏠 Home</button></div>`;
+        return html;
+    }
+
+    function showTeacherData() {
+        let html = `<h4>📊 Registered Students (${studentsData.length})</h4><table>`;
+        html += `<tr><th>Name</th><th>Phone</th><th>School</th></tr>`;
+        studentsData.forEach(s => {
+            html += `<tr><td>${escapeHtml(s.name)}</td><td>${s.phone}</td><td>${escapeHtml(s.school)}</td></tr>`;
+        });
+        html += `</table><h4>🔄 Reattempt Requests</h4><ul>`;
+        let hasReq = false;
+        for(let [key, val] of Object.entries(reattemptRequests)) {
+            if(val === true) {
+                hasReq = true;
+                let [phone, chapId] = key.split("_");
+                let student = studentsData.find(s => s.phone === phone);
+                let chapName = MATH_CHAPTERS[chapId]?.name || chapId;
+                html += `<li>${student?.name || phone} - Request for ${chapName} <button data-clear-req="${key}" class="approveReqBtn" style="background:green;color:white;padding:2px 10px;border-radius:20px;margin-left:10px;">✅ Approve</button></li>`;
+            }
+        }
+        if(!hasReq) html += `<li>No pending requests</li>`;
+        html += `</ul><button id="downloadPDFBtn" class="download-pdf-btn">📄 Download Student Data PDF</button>`;
+        document.getElementById("teacherDataView").innerHTML = html;
+        
+        document.querySelectorAll(".approveReqBtn").forEach(btn => {
+            btn.onclick = () => {
+                let key = btn.getAttribute("data-clear-req");
+                if(key) {
+                    setRequest(key.split("_")[0], key.split("_")[1], false);
+                    chapterAttempts[key] = 0;
+                    saveData();
+                    showTeacherData();
+                    alert("✅ Approved! Student can attempt again.");
+                }
+            };
+        });
+        
+        document.getElementById("downloadPDFBtn")?.addEventListener("click", async () => {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.setFontSize(16);
+            doc.text("Teachers Academy Bahawalpur - Student Report", 14, 20);
+            doc.setFontSize(10);
+            doc.text(`Total Students: ${studentsData.length}`, 14, 35);
+            let y = 50;
+            studentsData.forEach((s, i) => {
+                if(y > 270) { doc.addPage(); y = 20; }
+                doc.text(`${i+1}. ${s.name} | ${s.phone} | ${s.school}`, 14, y);
+                y += 8;
+            });
+            doc.save("Students_Report.pdf");
+        });
+    }
+
+    function attachEvents() {
+        document.getElementById("shareAppBtn")?.addEventListener("click", shareApp);
+        document.getElementById("copyLinkBtn")?.addEventListener("click", () => copyToClipboard(window.location.href));
+        
+        document.getElementById("verifyTeacherBtn")?.addEventListener("click", () => {
+            let pass = document.getElementById("teacherPass").value;
+            if(pass === "2247") showTeacherData();
+            else alert("Wrong password! Use: 2247");
+        });
+        
+        document.getElementById("registerStudentBtn")?.addEventListener("click", () => {
+            let name = document.getElementById("studentName").value.trim();
+            let father = document.getElementById("fatherName").value.trim();
+            let phone = document.getElementById("phoneNum").value.trim();
+            let school = document.getElementById("schoolName").value.trim();
+            let city = document.getElementById("cityName").value.trim() || "Bahawalpur";
+            
+            if(!name || !father || !phone || !school) { alert("Please fill all fields"); return; }
+            if(!/^03\d{2}-\d{7}$/.test(phone)) { alert("Use format: 03XX-XXXXXXX"); return; }
+            
+            let samePhoneCount = studentsData.filter(s => s.phone === phone).length;
+            if(samePhoneCount >= 3) { alert("This phone number already used by 3 students."); return; }
+            
+            let newStd = { id: Date.now(), name, father, phone, school, city, regDate: new Date().toISOString() };
+            studentsData.push(newStd);
+            saveData();
+            currentStudent = newStd;
+            currentChapter = null;
+            currentView = "testPanel";
+            render();
+        });
+        
+        document.querySelectorAll("[data-chapter]").forEach(btn => {
+            btn.onclick = () => {
+                let chapId = btn.getAttribute("data-chapter");
+                if(getAttemptsLeft(currentStudent.phone, chapId) <= 0 && !hasRequested(currentStudent.phone, chapId)) {
+                    alert("No attempts left! Request reattempt from Teacher section.");
+                    return;
+                }
+                currentChapter = chapId;
+                currentQuestions = MATH_CHAPTERS[chapId].questions;
+                userAnswers = new Array(currentQuestions.length).fill(-1);
+                resultData = null;
+                render();
+            };
+        });
+        
+        document.getElementById("finalSubmitTest")?.addEventListener("click", () => {
+            let qs = MATH_CHAPTERS[currentChapter].questions;
+            for(let i=0; i<qs.length; i++) {
+                let sel = document.querySelector(`input[name="q${i}"]:checked`);
+                userAnswers[i] = sel ? parseInt(sel.value) : -1;
+            }
+            if(userAnswers.includes(-1)) {
+                alert("⚠️ Please attempt all MCQs before submitting!");
+                render();
+                return;
+            }
+            
+            let correctCount = 0, wrongList = [];
+            qs.forEach((q, i) => {
+                if(userAnswers[i] === q.correct) correctCount++;
+                else wrongList.push({
+                    qno: i+1,
+                    questionText: q.text,
+                    selected: q.options[userAnswers[i]],
+                    correctOption: q.options[q.correct]
+                });
+            });
+            
+            resultData = {
+                chapterId: currentChapter,
+                total: qs.length,
+                score: correctCount,
+                correctCount: correctCount,
+                wrongCount: qs.length - correctCount,
+                wrongList: wrongList
+            };
+            incrementAttempt(currentStudent.phone, currentChapter);
+            alert(`📱 Result sent to ${currentStudent.phone}\nScore: ${correctCount}/${qs.length}`);
+            currentView = "resultPanel";
+            render();
+        });
+        
+        document.getElementById("reattemptBtn")?.addEventListener("click", () => {
+            if(getAttemptsLeft(currentStudent.phone, resultData.chapterId) > 0) {
+                currentChapter = resultData.chapterId;
+                userAnswers.fill(-1);
+                resultData = null;
+                currentView = "testPanel";
+                render();
+            }
+        });
+        
+        document.getElementById("requestReattemptBtn")?.addEventListener("click", () => {
+            setRequest(currentStudent.phone, resultData.chapterId, true);
+            alert("Request sent to Teacher!");
+            render();
+        });
+        
+        document.querySelectorAll("[data-action='backWelcome']").forEach(el => {
+            el.onclick = () => { currentView = "welcome"; currentStudent = null; currentChapter = null; render(); };
+        });
+        document.querySelectorAll("[data-action='backToChapters']").forEach(el => {
+            el.onclick = () => { currentChapter = null; render(); };
+        });
+        document.querySelectorAll("[data-action='backToChaptersFromResult']").forEach(el => {
+            el.onclick = () => { currentChapter = null; resultData = null; render(); };
+        });
+        document.querySelectorAll("[data-action='teacher']").forEach(el => {
+            el.onclick = () => { currentView = "teacherPanel"; render(); };
+        });
+        document.querySelectorAll("[data-action='student']").forEach(el => {
+            el.onclick = () => { currentView = "studentForm"; render(); };
+        });
+    }
+
+    function escapeHtml(str) {
+        if(!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if(m === '&') return '&amp;';
+            if(m === '<') return '&lt;';
+            if(m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // Start the app
+    loadLogo();
+    loadData();
+    render();
+</script>
+</body>
+</html>
