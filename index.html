@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Teachers Academy | Exam Management System</title>
+    <title>Chemistry Exam System | 50 MCQs Bank | Random 16 Questions</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -12,84 +12,145 @@
             padding: 20px 16px 40px;
             min-height: 100vh;
         }
-        .container { max-width: 900px; margin: 0 auto; background: rgba(255,255,255,0.94); border-radius: 48px 32px; padding: 24px 20px 32px; box-shadow: 0 25px 45px rgba(0,0,0,0.15); }
-        .logo-area { text-align: center; margin-bottom: 20px; }
-        .logo-preview { width: 100px; height: 100px; background: #f8f3e0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; border: 3px solid #ffd966; overflow: hidden; }
-        .logo-preview img { max-width: 95%; max-height: 95%; object-fit: contain; }
-        .welcome-text { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #1e3c72, #2b5e8a); -webkit-background-clip: text; background-clip: text; color: transparent; text-align: center; }
-        .btn-group { display: flex; gap: 20px; justify-content: center; margin: 30px 0 20px; flex-wrap: wrap; }
-        .btn { border: none; font-weight: 700; padding: 14px 30px; border-radius: 60px; font-size: 1.1rem; cursor: pointer; background: white; box-shadow: 0 5px 12px rgba(0,0,0,0.1); transition: 0.2s; width: 180px; }
+        .container { max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.95); border-radius: 48px 32px; padding: 24px 20px 32px; box-shadow: 0 25px 45px rgba(0,0,0,0.15); }
+        .logo-preview { width: 80px; height: 80px; background: #f8f3e0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; border: 3px solid #ffd966; font-size: 2rem; }
+        .welcome-text { font-size: 1.5rem; font-weight: 800; text-align: center; background: linear-gradient(135deg, #1e3c72, #2b5e8a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .btn-group { display: flex; gap: 15px; justify-content: center; margin: 25px 0; flex-wrap: wrap; }
+        .btn { border: none; font-weight: 700; padding: 12px 25px; border-radius: 60px; font-size: 1rem; cursor: pointer; background: white; box-shadow: 0 5px 12px rgba(0,0,0,0.1); min-width: 150px; }
         .btn-teacher { background: #2c3e66; color: white; }
         .btn-student { background: #e6b422; color: #2c2b28; }
-        .btn-danger { background: #dc3545; color: white; }
         .btn-success { background: #28a745; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
         .form-card { background: #fefcf5; border-radius: 32px; padding: 20px; margin-top: 20px; }
-        input, select, textarea { width: 100%; padding: 12px 16px; margin: 8px 0 16px; border-radius: 60px; border: 1px solid #ccc; font-size: 1rem; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
-        .back-btn { background: #6c757d; color: white; margin-top: 18px; width: 100%; padding: 12px; border-radius: 40px; border: none; cursor: pointer; }
+        input, select { width: 100%; padding: 12px 16px; margin: 8px 0 16px; border-radius: 60px; border: 1px solid #ccc; font-size: 1rem; }
+        .back-btn { background: #6c757d; color: white; margin-top: 15px; width: 100%; padding: 12px; border-radius: 40px; border: none; cursor: pointer; }
         .timer { font-size: 2rem; text-align: center; background: #1e3c72; color: white; padding: 10px; border-radius: 60px; margin-bottom: 20px; font-family: monospace; }
         .mcq-card { background: white; border-radius: 28px; padding: 20px; margin-bottom: 20px; border-left: 8px solid #e6b422; }
-        .options label { display: block; margin: 10px 0; padding: 8px 12px; background: #f5f5f5; border-radius: 40px; cursor: pointer; }
+        .options label { display: block; margin: 10px 0; padding: 10px 15px; background: #f5f5f5; border-radius: 40px; cursor: pointer; }
+        .options label:hover { background: #e0e0e0; }
         .result-card { background: linear-gradient(120deg, #f9f3e0, #fff2db); border-radius: 28px; padding: 24px; margin-top: 20px; border: 2px solid #ffcd7e; }
-        .share-btn { background: #25D366; color: white; padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer; margin: 5px; }
-        .flex-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
-        .badge { background: #2c3e66; color: white; padding: 4px 12px; border-radius: 30px; font-size: 0.7rem; }
-        @media (max-width: 600px) { .btn { width: 100%; } .container { padding: 16px; } }
+        .share-btn { background: #25D366; color: white; padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer; margin-top: 15px; }
+        .progress-bar { background: #e0e0e0; border-radius: 30px; height: 8px; margin: 15px 0; }
+        .progress-fill { background: #28a745; border-radius: 30px; height: 8px; width: 0%; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        .warning { color: #c0392b; font-size: 0.75rem; margin-top: -10px; margin-bottom: 10px; }
+        @media (max-width: 600px) { .btn { width: 100%; } }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
 <div class="container" id="appRoot">Loading...</div>
 
 <script>
-    // ======================== DATA STRUCTURE ========================
-    let db = {
-        schools: { name: "Teachers Academy", logo: "", incharge: "" },
-        classes: [],        // { id, name, sections: [{id, name, teachers:[]}] }
-        subjects: [],       // { id, name, teacherName }
-        tests: [],          // { id, classId, sectionId, subjectId, title, questions, launchDate, expiryDate, durationPerQ }
-        students: [],       // { id, classId, sectionId, rollNo, admissionNo, name, fatherName, contactNo, whatsappNo }
-        results: []         // { studentId, testId, score, total, answers, timeTaken, submittedAt }
-    };
-    
-    let currentView = "welcome";
-    let currentTeacher = null;
+    // ======================== 50 MCQ QUESTION BANK ========================
+    const FULL_QUESTION_BANK = [
+        { text: "Chemistry is the study of?", options: ["Living organisms", "Matter and its composition", "Stars and planets", "Rocks and minerals"], correct: 1 },
+        { text: "The word Chemistry is derived from?", options: ["Greek word", "Latin word", "Arabic word Al-Kimiya", "French word"], correct: 2 },
+        { text: "Which branch deals with carbon compounds?", options: ["Inorganic chemistry", "Organic chemistry", "Physical chemistry", "Analytical chemistry"], correct: 1 },
+        { text: "The branch that studies metals and non-metals?", options: ["Organic", "Inorganic", "Physical", "Analytical"], correct: 1 },
+        { text: "Physical chemistry deals with?", options: ["Rate of reactions", "Carbon compounds", "Metals", "Living systems"], correct: 0 },
+        { text: "Analytical chemistry is concerned with?", options: ["Energy changes", "Separation and analysis", "Carbon compounds", "Nuclear reactions"], correct: 1 },
+        { text: "Biochemistry is the study of?", options: ["Industrial chemicals", "Chemical processes in living organisms", "Atmospheric chemistry", "Soil chemistry"], correct: 1 },
+        { text: "Which is a chemical change?", options: ["Melting of ice", "Boiling of water", "Rusting of iron", "Cutting of wood"], correct: 2 },
+        { text: "Which is a physical change?", options: ["Burning of paper", "Cooking of food", "Dissolving sugar in water", "Rusting of iron"], correct: 2 },
+        { text: "Father of Modern Chemistry is?", options: ["Jabir bin Hayyan", "Antoine Lavoisier", "John Dalton", "Robert Boyle"], correct: 1 },
+        { text: "Jabir bin Hayyan is known as?", options: ["Father of Medicine", "Father of Chemistry", "Father of Physics", "Father of Biology"], correct: 1 },
+        { text: "Industrial chemistry focuses on?", options: ["Small scale reactions", "Large scale manufacturing", "Theoretical concepts", "Atomic structure"], correct: 1 },
+        { text: "Environmental chemistry studies?", options: ["Pollution and its control", "Drug development", "Polymer synthesis", "Metal extraction"], correct: 0 },
+        { text: "Nuclear chemistry deals with?", options: ["Radioactive elements", "Carbon compounds", "Acids and bases", "Gases"], correct: 0 },
+        { text: "Matter is anything that has?", options: ["Mass only", "Volume only", "Mass and volume", "Energy only"], correct: 2 },
+        { text: "The three states of matter are?", options: ["Solid, Liquid, Gas", "Solid, Liquid, Plasma", "Solid, Liquid, Vapor", "Solid, Gas, Vapor"], correct: 0 },
+        { text: "Which state has definite shape and volume?", options: ["Solid", "Liquid", "Gas", "Plasma"], correct: 0 },
+        { text: "Which state has definite volume but indefinite shape?", options: ["Solid", "Liquid", "Gas", "Plasma"], correct: 1 },
+        { text: "Which state has indefinite shape and indefinite volume?", options: ["Solid", "Liquid", "Gas", "Plasma"], correct: 2 },
+        { text: "Particles in a solid are?", options: ["Tightly packed", "Loosely packed", "Far apart", "Randomly moving"], correct: 0 },
+        { text: "Particles in a liquid can?", options: ["Only vibrate", "Slide past each other", "Move freely everywhere", "Fixed positions"], correct: 1 },
+        { text: "Particles in a gas move?", options: ["Very slowly", "In fixed positions", "Rapidly and randomly", "Only in one direction"], correct: 2 },
+        { text: "Solid to liquid is called?", options: ["Freezing", "Melting", "Evaporation", "Condensation"], correct: 1 },
+        { text: "Liquid to solid is called?", options: ["Melting", "Freezing", "Boiling", "Sublimation"], correct: 1 },
+        { text: "Liquid to gas is called?", options: ["Condensation", "Evaporation", "Freezing", "Melting"], correct: 1 },
+        { text: "Gas to liquid is called?", options: ["Evaporation", "Sublimation", "Condensation", "Deposition"], correct: 2 },
+        { text: "Solid directly to gas is called?", options: ["Condensation", "Evaporation", "Sublimation", "Deposition"], correct: 2 },
+        { text: "Gas directly to solid is called?", options: ["Sublimation", "Deposition", "Condensation", "Freezing"], correct: 1 },
+        { text: "Melting point of ice is?", options: ["0°C", "32°C", "100°C", "-10°C"], correct: 0 },
+        { text: "Boiling point of water at sea level?", options: ["90°C", "95°C", "100°C", "110°C"], correct: 2 },
+        { text: "Freezing point of water is?", options: ["0°C", "100°C", "32°C", "-10°C"], correct: 0 },
+        { text: "Kinetic energy is highest in?", options: ["Solids", "Liquids", "Gases", "Same in all"], correct: 2 },
+        { text: "Kinetic energy is lowest in?", options: ["Solids", "Liquids", "Gases", "Same in all"], correct: 0 },
+        { text: "Intermolecular forces are strongest in?", options: ["Solids", "Liquids", "Gases", "Same in all"], correct: 0 },
+        { text: "Intermolecular forces are weakest in?", options: ["Solids", "Liquids", "Gases", "Same in all"], correct: 2 },
+        { text: "Diffusion is fastest in?", options: ["Solids", "Liquids", "Gases", "Same in all"], correct: 2 },
+        { text: "Diffusion is slowest in?", options: ["Solids", "Liquids", "Gases", "Same in all"], correct: 0 },
+        { text: "Dry ice (solid CO2) undergoes?", options: ["Melting", "Evaporation", "Sublimation", "Condensation"], correct: 2 },
+        { text: "Which state is compressible?", options: ["Solid", "Liquid", "Gas", "None"], correct: 2 },
+        { text: "Plasma is found in?", options: ["Stars", "Oceans", "Mountains", "Deserts"], correct: 0 },
+        { text: "The fourth state of matter is?", options: ["Solid", "Liquid", "Gas", "Plasma"], correct: 3 },
+        { text: "A scientific law is?", options: ["A guess", "Description of natural phenomenon", "An explanation", "A theory"], correct: 1 },
+        { text: "Theory is?", options: ["A guess", "A well-tested explanation", "A law", "An observation"], correct: 1 },
+        { text: "Which is NOT a branch of chemistry?", options: ["Organic", "Inorganic", "Biology", "Physical"], correct: 2 },
+        { text: "The branch that deals with rate of reactions?", options: ["Organic", "Inorganic", "Physical", "Analytical"], correct: 2 },
+        { text: "Who discovered oxygen?", options: ["Lavoisier", "Priestley", "Dalton", "Boyle"], correct: 1 },
+        { text: "The smallest particle of an element is?", options: ["Atom", "Molecule", "Ion", "Electron"], correct: 0 },
+        { text: "Which state has highest density?", options: ["Solid", "Liquid", "Gas", "Same"], correct: 0 },
+        { text: "Which state has lowest density?", options: ["Solid", "Liquid", "Gas", "Same"], correct: 2 }
+    ];
+
+    // Helper functions
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    function getRandomQuestions(count = 16) {
+        let shuffled = shuffleArray([...FULL_QUESTION_BANK]);
+        return shuffled.slice(0, count);
+    }
+
+    // Data storage
+    let students = [];
+    let results = [];
     let currentStudent = null;
-    let activeTest = null;
-    let timerInterval = null;
-    let currentQIndex = 0;
+    let currentView = "welcome";
+    let activeQuestions = [];
     let studentAnswers = [];
+    let currentQIndex = 0;
+    let timerInterval = null;
+    let timeLeft = 10;
     let testStartTime = null;
 
-    // Load/Save
-    function loadData() { try { const d = localStorage.getItem("ExamSystemDB"); if(d) db = JSON.parse(d); } catch(e){} if(!db.classes) db.classes = []; if(!db.subjects) db.subjects = []; if(!db.tests) db.tests = []; if(!db.students) db.students = []; if(!db.results) db.results = []; if(!db.schools) db.schools = { name: "Teachers Academy", logo: "", incharge: "" }; render(); }
-    function saveData() { localStorage.setItem("ExamSystemDB", JSON.stringify(db)); }
+    function saveData() {
+        localStorage.setItem("chemStudents", JSON.stringify(students));
+        localStorage.setItem("chemResults", JSON.stringify(results));
+    }
 
-    // Helper
-    function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+    function loadData() {
+        let s = localStorage.getItem("chemStudents");
+        let r = localStorage.getItem("chemResults");
+        if (s) students = JSON.parse(s);
+        if (r) results = JSON.parse(r);
+    }
 
-    // ======================== RENDER ENGINE ========================
     function render() {
         const root = document.getElementById("appRoot");
-        if(currentView === "welcome") root.innerHTML = renderWelcome();
-        else if(currentView === "teacherLogin") root.innerHTML = renderTeacherLogin();
-        else if(currentView === "teacherPanel") root.innerHTML = renderTeacherPanel();
-        else if(currentView === "studentLogin") root.innerHTML = renderStudentLogin();
-        else if(currentView === "studentRegister") root.innerHTML = renderStudentRegister();
-        else if(currentView === "activeTest") root.innerHTML = renderActiveTest();
-        else if(currentView === "studentResult") root.innerHTML = renderStudentResult();
+        if (currentView === "welcome") root.innerHTML = renderWelcome();
+        else if (currentView === "teacherLogin") root.innerHTML = renderTeacherLogin();
+        else if (currentView === "teacherPanel") root.innerHTML = renderTeacherPanel();
+        else if (currentView === "studentLogin") root.innerHTML = renderStudentLogin();
+        else if (currentView === "studentRegister") root.innerHTML = renderStudentRegister();
+        else if (currentView === "activeTest") root.innerHTML = renderActiveTest();
+        else if (currentView === "studentResult") root.innerHTML = renderStudentResult();
         attachEvents();
     }
 
     function renderWelcome() {
-        const logoHtml = db.schools.logo ? `<img src="${db.schools.logo}" alt="Logo">` : '<div style="font-size:2.5rem;">🏫</div>';
         return `
-            <div class="logo-area"><div class="logo-preview">${logoHtml}</div></div>
-            <div class="welcome-text">${escapeHtml(db.schools.name)}</div>
-            <div style="text-align:center; margin-bottom:20px;">Exam Management System</div>
+            <div class="logo-preview">🧪</div>
+            <div class="welcome-text">Chemistry Exam System</div>
+            <div style="text-align:center; margin:10px 0;">Chapter 1: Introduction to Chemistry</div>
+            <div style="text-align:center; font-size:0.8rem; color:#666;">📚 50 MCQ Bank | 🎲 16 Random Questions per Student</div>
             <div class="btn-group">
                 <button class="btn btn-teacher" data-action="teacherLogin">👨‍🏫 Teacher Login</button>
                 <button class="btn btn-student" data-action="studentLogin">📚 Student Login</button>
@@ -98,309 +159,364 @@
     }
 
     function renderTeacherLogin() {
-        return `<div class="form-card"><h3>🔐 Teacher Login</h3><input type="password" id="teacherPass" placeholder="Master Password"><button id="verifyMasterBtn" class="btn btn-teacher" style="width:100%">Login</button><button class="back-btn" data-action="backWelcome">Back</button></div>`;
+        return `
+            <div class="form-card">
+                <h3>🔐 Teacher Login</h3>
+                <input type="password" id="teacherPass" placeholder="Enter Password">
+                <button id="verifyTeacherBtn" class="btn btn-teacher" style="width:100%">Login</button>
+                <button class="back-btn" data-action="backWelcome">Back</button>
+            </div>
+        `;
     }
 
     function renderTeacherPanel() {
-        let html = `<div class="form-card"><h3>📋 Admin Dashboard</h3>
-        <div class="flex-row"><button id="manageClassesBtn" class="btn btn-success">🏫 Manage Classes & Sections</button>
-        <button id="manageSubjectsBtn" class="btn btn-success">📚 Manage Subjects</button>
-        <button id="manageTestsBtn" class="btn btn-success">📝 Create/Manage Tests</button>
-        <button id="uploadStudentsBtn" class="btn btn-success">👥 Upload Students (Excel)</button>
-        <button id="viewResultsBtn" class="btn btn-success">📊 Results & Rankings</button>
-        <button id="schoolSettingsBtn" class="btn btn-success">⚙️ School Settings</button></div>
-        <div id="teacherDynamicPanel"></div></div><button class="back-btn" data-action="backWelcome">Logout</button>`;
-        return html;
+        let studentList = '';
+        students.forEach(s => {
+            let studentResults = results.filter(r => r.studentId === s.id);
+            let avgScore = studentResults.length ? (studentResults.reduce((a,b)=>a+b.score,0)/studentResults.length).toFixed(1) : 'No test';
+            studentList += `<tr><td>${s.rollNo}</td><td>${s.name}</td><td>${s.fatherName}</td><td>${s.contact}</td><td>${avgScore}</td></tr>`;
+        });
+        
+        return `
+            <div class="form-card">
+                <h3>📋 Teacher Dashboard</h3>
+                <button id="addStudentBtn" class="btn btn-success" style="width:100%; margin-bottom:10px;">➕ Add New Student</button>
+                <button id="viewResultsBtn" class="btn" style="width:100%; margin-bottom:10px; background:#17a2b8; color:white;">📊 View All Results</button>
+                <button id="resetAllBtn" class="btn btn-danger" style="width:100%;">🔄 Reset All Data</button>
+                <hr>
+                <h4>📝 Registered Students</h4>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <tr><th>Roll No</th><th>Name</th><th>Father Name</th><th>Contact</th><th>Avg Score</th></tr>
+                        ${studentList || '<tr><td colspan="5">No students registered</td></tr>'}
+                    </table>
+                </div>
+                <button class="back-btn" data-action="backWelcome">Logout</button>
+            </div>
+        `;
     }
 
     function renderStudentLogin() {
-        let classOptions = '<option value="">Select Class</option>';
-        db.classes.forEach(c => {
-            c.sections.forEach(s => {
-                classOptions += `<option value="${c.id}|${s.id}">${c.name} - ${s.name}</option>`;
-            });
-        });
-        return `<div class="form-card"><h3>📚 Student Login</h3>
-        <select id="studentClassSelect">${classOptions}</select>
-        <select id="studentNameSelect"><option>Select Roll No / Name</option></select>
-        <div id="studentInfoFields"></div>
-        <button id="loginStudentBtn" class="btn btn-student">Start Test</button>
-        <button id="createNewStudentBtn" class="btn">➕ New Student? Register</button>
-        <button class="back-btn" data-action="backWelcome">Back</button></div>`;
+        return `
+            <div class="form-card">
+                <h3>📚 Student Login</h3>
+                <select id="studentSelect">
+                    <option value="">Select Roll No / Name</option>
+                    ${students.map(s => `<option value="${s.id}">${s.rollNo} - ${s.name}</option>`).join('')}
+                </select>
+                <button id="startTestBtn" class="btn btn-student" style="width:100%">Start Test</button>
+                <button id="newStudentBtn" class="btn" style="width:100%; margin-top:10px;">➕ New Student? Register Here</button>
+                <button class="back-btn" data-action="backWelcome">Back</button>
+            </div>
+        `;
     }
 
     function renderStudentRegister() {
-        let classOptions = '<option value="">Select Class</option>';
-        db.classes.forEach(c => {
-            c.sections.forEach(s => {
-                classOptions += `<option value="${c.id}|${s.id}">${c.name} - ${s.name}</option>`;
-            });
-        });
-        return `<div class="form-card"><h3>📝 New Student Registration</h3>
-        <select id="regClassSelect">${classOptions}</select>
-        <input type="text" id="regRollNo" placeholder="Roll No"><input type="text" id="regAdmissionNo" placeholder="Admission No">
-        <input type="text" id="regName" placeholder="Full Name"><input type="text" id="regFatherName" placeholder="Father Name">
-        <input type="tel" id="regContact" placeholder="Contact No"><input type="tel" id="regWhatsapp" placeholder="WhatsApp No">
-        <button id="registerNewStudentBtn" class="btn btn-success">Register & Continue</button>
-        <button class="back-btn" data-action="studentLogin">Back</button></div>`;
+        return `
+            <div class="form-card">
+                <h3>📝 New Student Registration</h3>
+                <input type="text" id="regRollNo" placeholder="Roll Number *">
+                <input type="text" id="regName" placeholder="Full Name *">
+                <input type="text" id="regFatherName" placeholder="Father Name *">
+                <input type="tel" id="regContact" placeholder="Contact Number *">
+                <div class="warning">⚠️ All fields are required</div>
+                <button id="registerBtn" class="btn btn-success" style="width:100%">Register & Start Test</button>
+                <button class="back-btn" data-action="studentLogin">Back to Login</button>
+            </div>
+        `;
     }
 
     function renderActiveTest() {
-        if(!activeTest) return "<div>No active test</div>";
-        let q = activeTest.questions[currentQIndex];
-        let timeLeft = activeTest.timeRemaining;
-        return `<div class="timer">⏱️ ${Math.floor(timeLeft/60)}:${(timeLeft%60).toString().padStart(2,'0')}</div>
-        <div class="mcq-card"><h3>Question ${currentQIndex+1}/${activeTest.questions.length}</h3>
-        <p style="font-size:1.2rem; margin-bottom:15px;">${escapeHtml(q.text)}</p>
-        <div class="options">${q.options.map((opt,i)=>`<label><input type="radio" name="q" value="${i}"> ${String.fromCharCode(65+i)}. ${escapeHtml(opt)}</label>`).join('')}</div>
-        <button id="nextQBtn" class="btn btn-success" style="width:100%">Next →</button></div>`;
+        if (!activeQuestions.length) return "<div>Error loading test</div>";
+        let q = activeQuestions[currentQIndex];
+        let progress = ((currentQIndex + 1) / activeQuestions.length) * 100;
+        return `
+            <div class="timer">⏱️ ${timeLeft} seconds left</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+            <div class="mcq-card">
+                <h3>Question ${currentQIndex + 1} of ${activeQuestions.length}</h3>
+                <p style="font-size:1.1rem; margin:15px 0;">${escapeHtml(q.text)}</p>
+                <div class="options" id="optionsContainer">
+                    ${q.options.map((opt, i) => `
+                        <label>
+                            <input type="radio" name="mcq" value="${i}">
+                            ${String.fromCharCode(65 + i)}. ${escapeHtml(opt)}
+                        </label>
+                    `).join('')}
+                </div>
+                <button id="nextQuestionBtn" class="btn btn-success" style="width:100%; margin-top:15px;">Next →</button>
+            </div>
+        `;
     }
 
     function renderStudentResult() {
-        let r = currentStudent.result;
-        let logo = db.schools.logo ? `<img src="${db.schools.logo}" style="width:60px;border-radius:50%">` : "🏫";
-        return `<div class="result-card"><div style="display:flex;align-items:center;gap:15px;">${logo}<div><strong>${escapeHtml(db.schools.name)}</strong><br>${escapeHtml(currentStudent.name)} (Roll: ${currentStudent.rollNo})</div></div>
-        <h3>🎓 Test Result</h3><p><strong>Score:</strong> ${r.score}/${r.total}<br><strong>Time Taken:</strong> ${Math.floor(r.timeTaken/60)} min ${r.timeTaken%60} sec<br><strong>Percentage:</strong> ${Math.round(r.score/r.total*100)}%</p>
-        <div><strong>❌ Wrong Answers:</strong><ul>${r.wrongList.map(w=>`<li>Q${w.qno}: ${escapeHtml(w.question)}<br>Your: ${escapeHtml(w.yourAnswer)} | Correct: ${escapeHtml(w.correctAnswer)}</li>`).join('')}</ul></div>
-        <button id="shareResultBtn" class="share-btn">📤 Share Result on WhatsApp</button>
-        <button class="back-btn" data-action="backWelcome">🏠 Home</button></div>`;
+        let r = currentStudent.currentResult;
+        let percentage = Math.round((r.score / r.total) * 100);
+        return `
+            <div class="result-card">
+                <div style="text-align:center; margin-bottom:15px;">
+                    <div class="logo-preview" style="width:60px; height:60px; font-size:1.5rem;">🧪</div>
+                    <h2>🧪 Test Result</h2>
+                </div>
+                <p><strong>Student:</strong> ${escapeHtml(currentStudent.name)} (Roll No: ${currentStudent.rollNo})</p>
+                <p><strong>Father Name:</strong> ${escapeHtml(currentStudent.fatherName)}</p>
+                <p><strong>Contact:</strong> ${currentStudent.contact}</p>
+                <hr>
+                <h3>📊 Score: ${r.score} / ${r.total}</h3>
+                <h3>📈 Percentage: ${percentage}%</h3>
+                <p><strong>⏱️ Time Taken:</strong> ${Math.floor(r.timeTaken / 60)} minutes ${r.timeTaken % 60} seconds</p>
+                <hr>
+                <div><strong>❌ Incorrect Answers:</strong></div>
+                <ul>
+                    ${r.wrongList.map(w => `<li><strong>Q${w.qno}:</strong> ${escapeHtml(w.question)}<br>👉 Your answer: ${escapeHtml(w.yourAnswer)}<br>✅ Correct: ${escapeHtml(w.correctAnswer)}</li>`).join('')}
+                </ul>
+                <button id="shareWhatsAppBtn" class="share-btn">📤 Share Result on WhatsApp</button>
+                <button class="back-btn" data-action="backWelcome">🏠 Back to Home</button>
+            </div>
+        `;
     }
 
-    // ======================== TEACHER PANEL FUNCTIONS ========================
-    function showManageClasses() {
-        let html = `<h4>📁 Classes & Sections</h4><input type="text" id="newClassName" placeholder="New Class Name"><button id="addClassBtn">+ Add Class</button><br><br>`;
-        db.classes.forEach((c, ci) => {
-            html += `<div style="border:1px solid #ccc; padding:10px; margin:10px 0; border-radius:20px;"><strong>${escapeHtml(c.name)}</strong> <button data-class="${ci}" class="delClassBtn">❌</button>
-            <div style="margin-left:20px;"><h5>Sections:</h5>`;
-            c.sections.forEach((s, si) => {
-                html += `<div>📌 ${escapeHtml(s.name)} <button data-class="${ci}" data-section="${si}" class="delSectionBtn">🗑️</button></div>`;
-            });
-            html += `<input type="text" id="newSec_${ci}" placeholder="New Section"><button data-class="${ci}" class="addSectionBtn">+ Add Section</button></div>`;
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
         });
-        document.getElementById("teacherDynamicPanel").innerHTML = html;
-        document.getElementById("addClassBtn")?.addEventListener("click", () => { let n = document.getElementById("newClassName").value; if(n) { db.classes.push({ id: Date.now(), name: n, sections: [] }); saveData(); showManageClasses(); } });
-        document.querySelectorAll(".delClassBtn").forEach(btn => { btn.onclick = () => { db.classes.splice(parseInt(btn.dataset.class),1); saveData(); showManageClasses(); }; });
-        document.querySelectorAll(".addSectionBtn").forEach(btn => { btn.onclick = () => { let ci = parseInt(btn.dataset.class); let secName = document.getElementById(`newSec_${ci}`).value; if(secName) { db.classes[ci].sections.push({ id: Date.now(), name: secName, teachers: [] }); saveData(); showManageClasses(); } }; });
-        document.querySelectorAll(".delSectionBtn").forEach(btn => { btn.onclick = () => { let ci = parseInt(btn.dataset.class), si = parseInt(btn.dataset.section); db.classes[ci].sections.splice(si,1); saveData(); showManageClasses(); }; });
-    }
-
-    function showManageSubjects() {
-        let html = `<h4>📚 Subjects & Teachers</h4><input id="newSubjName" placeholder="Subject"><input id="newSubjTeacher" placeholder="Teacher Name"><button id="addSubjBtn">+ Add</button><br><br>`;
-        db.subjects.forEach((s, i) => { html += `<div>📖 ${escapeHtml(s.name)} - Teacher: ${escapeHtml(s.teacherName)} <button data-i="${i}" class="delSubjBtn">❌</button></div>`; });
-        document.getElementById("teacherDynamicPanel").innerHTML = html;
-        document.getElementById("addSubjBtn")?.addEventListener("click", () => { let n=document.getElementById("newSubjName").value, t=document.getElementById("newSubjTeacher").value; if(n&&t){ db.subjects.push({ id:Date.now(), name:n, teacherName:t }); saveData(); showManageSubjects(); } });
-        document.querySelectorAll(".delSubjBtn").forEach(btn => { btn.onclick = () => { db.subjects.splice(parseInt(btn.dataset.i),1); saveData(); showManageSubjects(); }; });
-    }
-
-    function showManageTests() {
-        let html = `<h4>📝 Create New Test</h4>
-        <select id="testClass"><option value="">Select Class</option>${db.classes.map((c,ci)=>`<option value="${ci}">${c.name}</option>`).join('')}</select>
-        <select id="testSection"><option value="">Select Section</option></select>
-        <select id="testSubject"><option value="">Select Subject</option>${db.subjects.map((s,si)=>`<option value="${si}">${s.name}</option>`).join('')}</select>
-        <input type="text" id="testTitle" placeholder="Test Title"><textarea id="testQuestions" rows="5" placeholder="Paste MCQs here (Format: Question? Option1, Option2, Option3, Option4 *CorrectOption)"></textarea>
-        <input type="datetime-local" id="launchDate"><input type="datetime-local" id="expiryDate"><input type="number" id="durationPerQ" placeholder="Seconds per question (default 10)" value="10">
-        <button id="createTestBtn" class="btn btn-success">Create Test</button><hr><h4>Existing Tests</h4>`;
-        db.tests.forEach((t, i) => { html += `<div>📌 ${t.title} (${new Date(t.launchDate).toLocaleString()}) <button data-i="${i}" class="delTestBtn">Delete</button></div>`; });
-        document.getElementById("teacherDynamicPanel").innerHTML = html;
-        document.getElementById("testClass")?.addEventListener("change", (e) => { let ci=e.target.value; let secHtml='<option>Select Section</option>'; if(ci!=='') db.classes[ci].sections.forEach(s=>{ secHtml+=`<option value="${s.id}">${s.name}</option>`; }); document.getElementById("testSection").innerHTML=secHtml; });
-        document.getElementById("createTestBtn")?.addEventListener("click", () => {
-            let raw = document.getElementById("testQuestions").value;
-            let lines = raw.split('\n').filter(l=>l.trim());
-            let questions = [];
-            for(let line of lines){
-                let parts = line.split('?');
-                if(parts.length<2) continue;
-                let text = parts[0].trim();
-                let optsPart = parts[1].split('*');
-                let opts = optsPart[0].split(',').map(o=>o.trim());
-                let correct = parseInt(optsPart[1])-1;
-                if(opts.length===4) questions.push({ text, options: opts, correct });
-            }
-            if(questions.length===0){ alert("No valid MCQs found. Format: Question? Option1, Option2, Option3, Option4 *2"); return; }
-            let test = { id:Date.now(), classId:parseInt(document.getElementById("testClass").value), sectionId:document.getElementById("testSection").value, subjectId:parseInt(document.getElementById("testSubject").value), title:document.getElementById("testTitle").value, questions, launchDate:document.getElementById("launchDate").value, expiryDate:document.getElementById("expiryDate").value, durationPerQ:parseInt(document.getElementById("durationPerQ").value)||10 };
-            db.tests.push(test); saveData(); showManageTests(); alert("Test Created!");
-        });
-        document.querySelectorAll(".delTestBtn").forEach(btn => { btn.onclick = () => { db.tests.splice(parseInt(btn.dataset.i),1); saveData(); showManageTests(); }; });
-    }
-
-    function showUploadStudents() {
-        let html = `<h4>👥 Upload Students (Excel)</h4><select id="uploadClass"><option>Select Class</option>${db.classes.map((c,ci)=>`<option value="${ci}">${c.name}</option>`).join('')}</select>
-        <select id="uploadSection"><option>Select Section</option></select><input type="file" id="excelFile" accept=".xlsx, .xls"><button id="processExcelBtn">Upload & Process</button>
-        <div id="uploadPreview"></div>`;
-        document.getElementById("teacherDynamicPanel").innerHTML = html;
-        document.getElementById("uploadClass")?.addEventListener("change", (e) => { let ci=e.target.value; let secHtml='<option>Select Section</option>'; if(ci!=='') db.classes[ci].sections.forEach(s=>{ secHtml+=`<option value="${s.id}">${s.name}</option>`; }); document.getElementById("uploadSection").innerHTML=secHtml; });
-        document.getElementById("processExcelBtn")?.addEventListener("click", () => {
-            let file = document.getElementById("excelFile").files[0];
-            if(!file) return;
-            let reader = new FileReader();
-            reader.onload = function(e) {
-                let data = new Uint8Array(e.target.result);
-                let workbook = XLSX.read(data, {type: 'array'});
-                let sheet = workbook.Sheets[workbook.SheetNames[0]];
-                let rows = XLSX.utils.sheet_to_json(sheet, {header:1});
-                let classId = parseInt(document.getElementById("uploadClass").value);
-                let sectionId = document.getElementById("uploadSection").value;
-                for(let i=1; i<rows.length; i++){
-                    let r = rows[i];
-                    if(r[0] && r[1] && r[2] && r[3]){
-                        db.students.push({ id:Date.now(), classId, sectionId, rollNo:r[1], admissionNo:r[2], name:r[3], fatherName:r[4]||'', contactNo:r[5]||'', whatsappNo:r[6]||'' });
-                    }
-                }
-                saveData(); alert("Students uploaded!");
-            };
-            reader.readAsArrayBuffer(file);
-        });
-    }
-
-    function showResultsRankings() {
-        let html = `<h4>📊 Results & Rankings</h4><select id="rankClass"><option>Select Class</option>${db.classes.map((c,ci)=>`<option value="${ci}">${c.name}</option>`).join('')}</select>
-        <select id="rankSection"><option>Select Section</option></select><button id="showRankingsBtn">Show Rankings</button><div id="rankingsDiv"></div>
-        <button id="downloadRankingsPDF" class="btn btn-danger">Download PDF with Logo</button>`;
-        document.getElementById("teacherDynamicPanel").innerHTML = html;
-        document.getElementById("rankClass")?.addEventListener("change", (e) => { let ci=e.target.value; let secHtml='<option>Select Section</option>'; if(ci!=='') db.classes[ci].sections.forEach(s=>{ secHtml+=`<option value="${s.id}">${s.name}</option>`; }); document.getElementById("rankSection").innerHTML=secHtml; });
-        document.getElementById("showRankingsBtn")?.addEventListener("click", () => {
-            let classId = parseInt(document.getElementById("rankClass").value);
-            let sectionId = document.getElementById("rankSection").value;
-            let classStudents = db.students.filter(s=> s.classId===classId && s.sectionId===sectionId);
-            let rankings = [];
-            classStudents.forEach(st => {
-                let results = db.results.filter(r=> r.studentId===st.id);
-                let totalScore = results.reduce((sum,r)=> sum + r.score,0);
-                rankings.push({ student: st, totalScore, testsTaken: results.length });
-            });
-            rankings.sort((a,b)=>b.totalScore - a.totalScore);
-            let rankHtml = `<h5>Rankings (Class ${db.classes[classId]?.name})</h5><table><tr><th>Rank</th><th>Roll No</th><th>Name</th><th>Total Score</th><th>Tests</th></tr>`;
-            rankings.forEach((r,idx) => { rankHtml += `<tr><td>${idx+1}</td><td>${r.student.rollNo}</td><td>${r.student.name}</td><td>${r.totalScore}</td><td>${r.testsTaken}</td></tr>`; });
-            rankHtml += `</table><div class="flex-row"><button id="genBannerBtn" class="share-btn">🏆 Generate Position Holder Banner</button></div>`;
-            document.getElementById("rankingsDiv").innerHTML = rankHtml;
-            document.getElementById("genBannerBtn")?.addEventListener("click", () => { alert("Banner generated! Share via screenshot."); });
-        });
-        document.getElementById("downloadRankingsPDF")?.addEventListener("click", async () => { alert("PDF download with logo feature ready"); });
-    }
-
-    function schoolSettings() {
-        let html = `<h4>⚙️ School Settings</h4><input id="schoolName" placeholder="School Name" value="${escapeHtml(db.schools.name)}"><input id="schoolIncharge" placeholder="In-charge Name" value="${escapeHtml(db.schools.incharge)}"><input type="file" id="schoolLogoUpload" accept="image/*"><button id="saveSchoolSettingsBtn">Save Settings</button>`;
-        document.getElementById("teacherDynamicPanel").innerHTML = html;
-        document.getElementById("saveSchoolSettingsBtn")?.addEventListener("click", () => { db.schools.name = document.getElementById("schoolName").value; db.schools.incharge = document.getElementById("schoolIncharge").value; saveData(); alert("Saved!"); });
-        document.getElementById("schoolLogoUpload")?.addEventListener("change", (e) => { let file=e.target.files[0]; if(file){ let reader=new FileReader(); reader.onload=(ev)=>{ db.schools.logo=ev.target.result; saveData(); alert("Logo updated!"); }; reader.readAsDataURL(file); } });
-    }
-
-    // ======================== STUDENT LOGIC ========================
-    function startTestForStudent(student, test) {
-        if(!test){ alert("No active test available for your class/section"); return; }
-        if(new Date() < new Date(test.launchDate)){ alert("Test not launched yet!"); return; }
-        if(new Date() > new Date(test.expiryDate)){ alert("Test expired!"); return; }
-        let existing = db.results.find(r=> r.studentId===student.id && r.testId===test.id);
-        if(existing){ alert("You have already taken this test!"); return; }
-        currentStudent = student;
-        activeTest = { ...test, questions: test.questions, currentQ:0, answers: new Array(test.questions.length).fill(-1), timeRemaining: test.durationPerQ, startTime: Date.now() };
-        currentQIndex = 0;
-        studentAnswers = new Array(test.questions.length).fill(-1);
-        testStartTime = Date.now();
-        startTimer();
-        currentView = "activeTest";
-        render();
     }
 
     function startTimer() {
-        if(timerInterval) clearInterval(timerInterval);
+        if (timerInterval) clearInterval(timerInterval);
+        timeLeft = 10;
         timerInterval = setInterval(() => {
-            if(!activeTest) return;
-            activeTest.timeRemaining--;
-            if(activeTest.timeRemaining <= 0){
+            if (currentView !== "activeTest") {
                 clearInterval(timerInterval);
-                let selected = document.querySelector('input[name="q"]:checked');
-                studentAnswers[currentQIndex] = selected ? parseInt(selected.value) : -1;
-                if(currentQIndex + 1 < activeTest.questions.length){
-                    currentQIndex++;
-                    activeTest.timeRemaining = activeTest.durationPerQ;
-                    startTimer();
-                    render();
-                } else {
-                    submitTest();
-                }
+                return;
             }
-            document.querySelector(".timer") && (document.querySelector(".timer").innerHTML = `⏱️ ${Math.floor(activeTest.timeRemaining/60)}:${(activeTest.timeRemaining%60).toString().padStart(2,'0')}`);
+            timeLeft--;
+            const timerEl = document.querySelector(".timer");
+            if (timerEl) timerEl.innerHTML = `⏱️ ${timeLeft} seconds left`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                autoMoveToNext();
+            }
         }, 1000);
     }
 
-    function submitTest() {
+    function autoMoveToNext() {
+        // Save current answer if any
+        let selected = document.querySelector('input[name="mcq"]:checked');
+        if (selected) {
+            studentAnswers[currentQIndex] = parseInt(selected.value);
+        } else {
+            studentAnswers[currentQIndex] = -1;
+        }
+        
+        // Move to next question or finish
+        if (currentQIndex + 1 < activeQuestions.length) {
+            currentQIndex++;
+            timeLeft = 10;
+            render();
+            startTimer();
+        } else {
+            finishTest();
+        }
+    }
+
+    function finishTest() {
         clearInterval(timerInterval);
-        let selected = document.querySelector('input[name="q"]:checked');
-        if(selected) studentAnswers[currentQIndex] = parseInt(selected.value);
-        let correctCount = 0, wrongList = [];
-        activeTest.questions.forEach((q,i) => {
-            if(studentAnswers[i] === q.correct) correctCount++;
-            else wrongList.push({ qno: i+1, question: q.text, yourAnswer: q.options[studentAnswers[i]] || "Not answered", correctAnswer: q.options[q.correct] });
-        });
-        let timeTaken = Math.floor((Date.now() - testStartTime)/1000);
-        let result = { studentId: currentStudent.id, testId: activeTest.id, score: correctCount, total: activeTest.questions.length, answers: studentAnswers, timeTaken, wrongList, submittedAt: new Date().toISOString() };
-        db.results.push(result);
+        
+        // Save last answer
+        let selected = document.querySelector('input[name="mcq"]:checked');
+        if (selected) {
+            studentAnswers[currentQIndex] = parseInt(selected.value);
+        } else if (studentAnswers[currentQIndex] === undefined) {
+            studentAnswers[currentQIndex] = -1;
+        }
+        
+        // Calculate score
+        let correctCount = 0;
+        let wrongList = [];
+        for (let i = 0; i < activeQuestions.length; i++) {
+            let q = activeQuestions[i];
+            let userAnswer = studentAnswers[i];
+            if (userAnswer === q.correct) {
+                correctCount++;
+            } else {
+                wrongList.push({
+                    qno: i + 1,
+                    question: q.text,
+                    yourAnswer: userAnswer !== -1 ? q.options[userAnswer] : "Not answered",
+                    correctAnswer: q.options[q.correct]
+                });
+            }
+        }
+        
+        let timeTaken = Math.floor((Date.now() - testStartTime) / 1000);
+        
+        let result = {
+            studentId: currentStudent.id,
+            studentName: currentStudent.name,
+            rollNo: currentStudent.rollNo,
+            score: correctCount,
+            total: activeQuestions.length,
+            percentage: Math.round((correctCount / activeQuestions.length) * 100),
+            timeTaken: timeTaken,
+            wrongList: wrongList,
+            date: new Date().toISOString()
+        };
+        
+        results.push(result);
         saveData();
-        currentStudent.result = result;
+        
+        currentStudent.currentResult = result;
         currentView = "studentResult";
         render();
     }
 
-    // ======================== EVENT ATTACHMENT ========================
+    function startTest(student) {
+        currentStudent = student;
+        activeQuestions = getRandomQuestions(16);
+        studentAnswers = new Array(16).fill(-1);
+        currentQIndex = 0;
+        timeLeft = 10;
+        testStartTime = Date.now();
+        currentView = "activeTest";
+        render();
+        startTimer();
+    }
+
     function attachEvents() {
-        document.getElementById("verifyMasterBtn")?.addEventListener("click", () => { if(document.getElementById("teacherPass").value === "2247"){ currentView="teacherPanel"; render(); } else alert("Wrong password!"); });
-        document.querySelectorAll("[data-action='backWelcome']").forEach(el => { el.onclick = () => { currentView="welcome"; render(); }; });
-        document.querySelectorAll("[data-action='teacherLogin']").forEach(el => { currentView="teacherLogin"; render(); });
-        document.querySelectorAll("[data-action='studentLogin']").forEach(el => { currentView="studentLogin"; render(); });
+        // Welcome screen buttons
+        document.querySelectorAll("[data-action='teacherLogin']").forEach(el => {
+            el.onclick = () => { currentView = "teacherLogin"; render(); };
+        });
+        document.querySelectorAll("[data-action='studentLogin']").forEach(el => {
+            el.onclick = () => { currentView = "studentLogin"; render(); };
+        });
+        document.querySelectorAll("[data-action='backWelcome']").forEach(el => {
+            el.onclick = () => { currentView = "welcome"; render(); };
+        });
         
-        document.getElementById("manageClassesBtn")?.addEventListener("click", showManageClasses);
-        document.getElementById("manageSubjectsBtn")?.addEventListener("click", showManageSubjects);
-        document.getElementById("manageTestsBtn")?.addEventListener("click", showManageTests);
-        document.getElementById("uploadStudentsBtn")?.addEventListener("click", showUploadStudents);
-        document.getElementById("viewResultsBtn")?.addEventListener("click", showResultsRankings);
-        document.getElementById("schoolSettingsBtn")?.addEventListener("click", schoolSettings);
-        
-        document.getElementById("studentClassSelect")?.addEventListener("change", (e) => {
-            let [classId, secId] = e.target.value.split("|");
-            let students = db.students.filter(s=> s.classId==classId && s.sectionId==secId);
-            let opts = '<option>Select Student</option>';
-            students.forEach(s=> { opts += `<option value="${s.id}">${s.rollNo} - ${s.name}</option>`; });
-            document.getElementById("studentNameSelect").innerHTML = opts;
-        });
-        document.getElementById("loginStudentBtn")?.addEventListener("click", () => {
-            let studentId = parseInt(document.getElementById("studentNameSelect").value);
-            let student = db.students.find(s=> s.id===studentId);
-            if(!student){ alert("Select student or register first"); return; }
-            let [classId, secId] = document.getElementById("studentClassSelect").value.split("|");
-            let availableTests = db.tests.filter(t=> t.classId==classId && t.sectionId==secId);
-            let now = new Date();
-            let activeTest = availableTests.find(t=> new Date(t.launchDate) <= now && new Date(t.expiryDate) >= now);
-            startTestForStudent(student, activeTest);
-        });
-        document.getElementById("createNewStudentBtn")?.addEventListener("click", () => { currentView="studentRegister"; render(); });
-        document.getElementById("registerNewStudentBtn")?.addEventListener("click", () => {
-            let [classId, secId] = document.getElementById("regClassSelect").value.split("|");
-            let newStd = { id:Date.now(), classId:parseInt(classId), sectionId:secId, rollNo:document.getElementById("regRollNo").value, admissionNo:document.getElementById("regAdmissionNo").value, name:document.getElementById("regName").value, fatherName:document.getElementById("regFatherName").value, contactNo:document.getElementById("regContact").value, whatsappNo:document.getElementById("regWhatsapp").value };
-            if(!newStd.name || !newStd.rollNo){ alert("Name and Roll No required"); return; }
-            db.students.push(newStd); saveData();
-            let tests = db.tests.filter(t=> t.classId==classId && t.sectionId==secId);
-            startTestForStudent(newStd, tests[0]);
-        });
-        document.getElementById("nextQBtn")?.addEventListener("click", () => {
-            let selected = document.querySelector('input[name="q"]:checked');
-            studentAnswers[currentQIndex] = selected ? parseInt(selected.value) : -1;
-            if(currentQIndex + 1 < activeTest.questions.length){
-                currentQIndex++;
-                activeTest.timeRemaining = activeTest.durationPerQ;
-                clearInterval(timerInterval);
-                startTimer();
+        // Teacher verification
+        document.getElementById("verifyTeacherBtn")?.addEventListener("click", () => {
+            let pass = document.getElementById("teacherPass").value;
+            if (pass === "2247") {
+                currentView = "teacherPanel";
                 render();
-            } else { submitTest(); }
+            } else {
+                alert("Wrong password! Use: 2247");
+            }
         });
-        document.getElementById("shareResultBtn")?.addEventListener("click", () => {
-            let text = `🎓 ${db.schools.name}\nStudent: ${currentStudent.name}\nScore: ${currentStudent.result.score}/${currentStudent.result.total}\nPercentage: ${Math.round(currentStudent.result.score/currentStudent.result.total*100)}%\nTime: ${Math.floor(currentStudent.result.timeTaken/60)} min ${currentStudent.result.timeTaken%60} sec`;
-            if(navigator.share) navigator.share({ title: "My Test Result", text });
-            else alert("Copy: "+text);
+        
+        // Teacher panel buttons
+        document.getElementById("addStudentBtn")?.addEventListener("click", () => {
+            currentView = "studentRegister";
+            render();
+        });
+        
+        document.getElementById("viewResultsBtn")?.addEventListener("click", () => {
+            if (results.length === 0) {
+                alert("No results yet!");
+                return;
+            }
+            let resultHtml = "<h4>📊 All Student Results</h4><div style='overflow-x:auto;'><table><tr><th>Date</th><th>Roll No</th><th>Name</th><th>Score</th><th>Percentage</th><th>Time</th></tr>";
+            results.slice().reverse().forEach(r => {
+                resultHtml += `<tr><td>${new Date(r.date).toLocaleDateString()}</td><td>${r.rollNo}</td><td>${r.studentName}</td><td>${r.score}/${r.total}</td><td>${r.percentage}%</td><td>${Math.floor(r.timeTaken/60)}:${r.timeTaken%60}</td></tr>`;
+            });
+            resultHtml += "</table></div><button id='closeResultsBtn' class='btn' style='margin-top:15px;'>Close</button>";
+            document.getElementById("teacherPanelContent")?.remove();
+            let panel = document.querySelector(".form-card");
+            let resultsDiv = document.createElement("div");
+            resultsDiv.innerHTML = resultHtml;
+            panel.appendChild(resultsDiv);
+            document.getElementById("closeResultsBtn")?.addEventListener("click", () => { render(); });
+        });
+        
+        document.getElementById("resetAllBtn")?.addEventListener("click", () => {
+            if (confirm("⚠️ WARNING: This will delete ALL students and results! Continue?")) {
+                students = [];
+                results = [];
+                saveData();
+                alert("All data reset!");
+                render();
+            }
+        });
+        
+        // Student login
+        document.getElementById("startTestBtn")?.addEventListener("click", () => {
+            let studentId = document.getElementById("studentSelect").value;
+            if (!studentId) {
+                alert("Please select a student");
+                return;
+            }
+            let student = students.find(s => s.id == studentId);
+            if (student) {
+                startTest(student);
+            }
+        });
+        
+        document.getElementById("newStudentBtn")?.addEventListener("click", () => {
+            currentView = "studentRegister";
+            render();
+        });
+        
+        // Student registration
+        document.getElementById("registerBtn")?.addEventListener("click", () => {
+            let rollNo = document.getElementById("regRollNo").value.trim();
+            let name = document.getElementById("regName").value.trim();
+            let fatherName = document.getElementById("regFatherName").value.trim();
+            let contact = document.getElementById("regContact").value.trim();
+            
+            if (!rollNo || !name || !fatherName || !contact) {
+                alert("Please fill all fields");
+                return;
+            }
+            
+            let newStudent = {
+                id: Date.now(),
+                rollNo: rollNo,
+                name: name,
+                fatherName: fatherName,
+                contact: contact
+            };
+            students.push(newStudent);
+            saveData();
+            startTest(newStudent);
+        });
+        
+        // Next question button
+        document.getElementById("nextQuestionBtn")?.addEventListener("click", () => {
+            let selected = document.querySelector('input[name="mcq"]:checked');
+            if (selected) {
+                studentAnswers[currentQIndex] = parseInt(selected.value);
+            } else {
+                studentAnswers[currentQIndex] = -1;
+            }
+            
+            if (currentQIndex + 1 < activeQuestions.length) {
+                currentQIndex++;
+                timeLeft = 10;
+                render();
+                startTimer();
+            } else {
+                finishTest();
+            }
+        });
+        
+        // Share result on WhatsApp
+        document.getElementById("shareWhatsAppBtn")?.addEventListener("click", () => {
+            let r = currentStudent.currentResult;
+            let msg = `🧪 Test Result - ${currentStudent.name} (Roll: ${currentStudent.rollNo})\n📊 Score: ${r.score}/${r.total}\n📈 Percentage: ${Math.round(r.score/r.total*100)}%\n⏱️ Time: ${Math.floor(r.timeTaken/60)} min ${r.timeTaken%60} sec\n🏫 Teachers Academy`;
+            let url = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
         });
     }
 
     loadData();
+    render();
 </script>
 </body>
 </html>
