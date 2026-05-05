@@ -16,11 +16,13 @@
         .logo-preview { width: 80px; height: 80px; background: #f8f3e0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; border: 3px solid #ffd966; font-size: 2rem; }
         .welcome-text { font-size: 1.5rem; font-weight: 800; text-align: center; background: linear-gradient(135deg, #1e3c72, #2b5e8a); -webkit-background-clip: text; background-clip: text; color: transparent; }
         .btn-group { display: flex; gap: 15px; justify-content: center; margin: 25px 0; flex-wrap: wrap; }
-        .btn { border: none; font-weight: 700; padding: 12px 25px; border-radius: 60px; font-size: 1rem; cursor: pointer; background: white; box-shadow: 0 5px 12px rgba(0,0,0,0.1); min-width: 150px; }
+        .btn { border: none; font-weight: 700; padding: 12px 25px; border-radius: 60px; font-size: 1rem; cursor: pointer; background: white; box-shadow: 0 5px 12px rgba(0,0,0,0.1); min-width: 150px; transition: transform 0.1s; }
+        .btn:active { transform: scale(0.97); }
         .btn-teacher { background: #2c3e66; color: white; }
         .btn-student { background: #e6b422; color: #2c2b28; }
         .btn-success { background: #28a745; color: white; }
         .btn-danger { background: #dc3545; color: white; }
+        .btn-warning { background: #ffc107; color: #2c2b28; }
         .form-card { background: #fefcf5; border-radius: 32px; padding: 20px; margin-top: 20px; }
         input, select { width: 100%; padding: 12px 16px; margin: 8px 0 16px; border-radius: 60px; border: 1px solid #ccc; font-size: 1rem; }
         .back-btn { background: #6c757d; color: white; margin-top: 15px; width: 100%; padding: 12px; border-radius: 40px; border: none; cursor: pointer; }
@@ -29,13 +31,16 @@
         .options label { display: block; margin: 10px 0; padding: 10px 15px; background: #f5f5f5; border-radius: 40px; cursor: pointer; }
         .options label:hover { background: #e0e0e0; }
         .result-card { background: linear-gradient(120deg, #f9f3e0, #fff2db); border-radius: 28px; padding: 24px; margin-top: 20px; border: 2px solid #ffcd7e; }
-        .share-btn { background: #25D366; color: white; padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer; margin-top: 15px; }
+        .share-btn { background: #25D366; color: white; padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer; margin-top: 15px; width: 100%; }
         .progress-bar { background: #e0e0e0; border-radius: 30px; height: 8px; margin: 15px 0; }
         .progress-fill { background: #28a745; border-radius: 30px; height: 8px; width: 0%; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
         .warning { color: #c0392b; font-size: 0.75rem; margin-top: -10px; margin-bottom: 10px; }
-        @media (max-width: 600px) { .btn { width: 100%; } }
+        .student-card { background: #e8f0fe; padding: 10px; border-radius: 20px; margin: 10px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .delete-student { background: #dc3545; color: white; border: none; padding: 5px 12px; border-radius: 20px; cursor: pointer; }
+        .flex-row { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        @media (max-width: 600px) { .btn { width: 100%; } .container { padding: 16px; } }
     </style>
 </head>
 <body>
@@ -89,10 +94,11 @@
         { text: "Theory is?", options: ["A guess", "A well-tested explanation", "A law", "An observation"], correct: 1 },
         { text: "Which is NOT a branch of chemistry?", options: ["Organic", "Inorganic", "Biology", "Physical"], correct: 2 },
         { text: "The branch that deals with rate of reactions?", options: ["Organic", "Inorganic", "Physical", "Analytical"], correct: 2 },
-        { text: "Who discovered oxygen?", options: ["Lavoisier", "Priestley", "Dalton", "Boyle"], correct: 1 },
         { text: "The smallest particle of an element is?", options: ["Atom", "Molecule", "Ion", "Electron"], correct: 0 },
         { text: "Which state has highest density?", options: ["Solid", "Liquid", "Gas", "Same"], correct: 0 },
-        { text: "Which state has lowest density?", options: ["Solid", "Liquid", "Gas", "Same"], correct: 2 }
+        { text: "Which state has lowest density?", options: ["Solid", "Liquid", "Gas", "Same"], correct: 2 },
+        { text: "What is the chemical symbol for Gold?", options: ["Go", "Gd", "Au", "Ag"], correct: 2 },
+        { text: "What is the chemical symbol for Silver?", options: ["Si", "Sv", "Ag", "Au"], correct: 2 }
     ];
 
     // Helper functions
@@ -131,6 +137,8 @@
         let r = localStorage.getItem("chemResults");
         if (s) students = JSON.parse(s);
         if (r) results = JSON.parse(r);
+        if (!students) students = [];
+        if (!results) results = [];
     }
 
     function render() {
@@ -152,8 +160,8 @@
             <div style="text-align:center; margin:10px 0;">Chapter 1: Introduction to Chemistry</div>
             <div style="text-align:center; font-size:0.8rem; color:#666;">📚 50 MCQ Bank | 🎲 16 Random Questions per Student</div>
             <div class="btn-group">
-                <button class="btn btn-teacher" data-action="teacherLogin">👨‍🏫 Teacher Login</button>
-                <button class="btn btn-student" data-action="studentLogin">📚 Student Login</button>
+                <button class="btn btn-teacher" id="teacherLoginBtn">👨‍🏫 Teacher Login</button>
+                <button class="btn btn-student" id="studentLoginBtn">📚 Student Login</button>
             </div>
         `;
     }
@@ -164,49 +172,98 @@
                 <h3>🔐 Teacher Login</h3>
                 <input type="password" id="teacherPass" placeholder="Enter Password">
                 <button id="verifyTeacherBtn" class="btn btn-teacher" style="width:100%">Login</button>
-                <button class="back-btn" data-action="backWelcome">Back</button>
+                <button class="back-btn" id="backFromTeacherLogin">Back</button>
             </div>
         `;
     }
 
     function renderTeacherPanel() {
         let studentList = '';
-        students.forEach(s => {
-            let studentResults = results.filter(r => r.studentId === s.id);
-            let avgScore = studentResults.length ? (studentResults.reduce((a,b)=>a+b.score,0)/studentResults.length).toFixed(1) : 'No test';
-            studentList += `<tr><td>${s.rollNo}</td><td>${s.name}</td><td>${s.fatherName}</td><td>${s.contact}</td><td>${avgScore}</td></tr>`;
-        });
+        if (students.length === 0) {
+            studentList = '<tr><td colspan="5" style="text-align:center;">No students registered yet. Click "Add New Student" below.</td></tr>';
+        } else {
+            students.forEach(s => {
+                let studentResults = results.filter(r => r.studentId === s.id);
+                let avgScore = studentResults.length ? (studentResults.reduce((a,b)=>a+b.score,0)/studentResults.length).toFixed(1) : 'Not taken';
+                studentList += `<tr>
+                    <td>${escapeHtml(s.rollNo)}</td>
+                    <td>${escapeHtml(s.name)}</td>
+                    <td>${escapeHtml(s.fatherName)}</td>
+                    <td>${escapeHtml(s.contact)}</td>
+                    <td>${avgScore}</td>
+                    <td><button class="delete-student-btn" data-id="${s.id}">🗑️</button></td>
+                </tr>`;
+            });
+        }
+        
+        let resultsList = '';
+        if (results.length === 0) {
+            resultsList = '<tr><td colspan="6" style="text-align:center;">No tests taken yet</td></tr>';
+        } else {
+            [...results].reverse().forEach(r => {
+                let student = students.find(s => s.id === r.studentId);
+                resultsList += `<tr>
+                    <td>${new Date(r.date).toLocaleDateString()}</td>
+                    <td>${escapeHtml(r.rollNo)}</td>
+                    <td>${escapeHtml(r.studentName)}</td>
+                    <td>${r.score}/${r.total}</td>
+                    <td>${r.percentage}%</td>
+                    <td>${Math.floor(r.timeTaken/60)}:${r.timeTaken%60}</td>
+                </tr>`;
+            });
+        }
         
         return `
             <div class="form-card">
                 <h3>📋 Teacher Dashboard</h3>
-                <button id="addStudentBtn" class="btn btn-success" style="width:100%; margin-bottom:10px;">➕ Add New Student</button>
-                <button id="viewResultsBtn" class="btn" style="width:100%; margin-bottom:10px; background:#17a2b8; color:white;">📊 View All Results</button>
-                <button id="resetAllBtn" class="btn btn-danger" style="width:100%;">🔄 Reset All Data</button>
-                <hr>
-                <h4>📝 Registered Students</h4>
-                <div style="overflow-x:auto;">
-                    <table>
-                        <tr><th>Roll No</th><th>Name</th><th>Father Name</th><th>Contact</th><th>Avg Score</th></tr>
-                        ${studentList || '<tr><td colspan="5">No students registered</td></tr>'}
-                    </table>
+                <div class="flex-row">
+                    <button id="addStudentBtn" class="btn btn-success">➕ Add New Student</button>
+                    <button id="showResultsBtn" class="btn btn-warning">📊 Show All Results</button>
+                    <button id="resetAllBtn" class="btn btn-danger">🔄 Reset All Data</button>
                 </div>
-                <button class="back-btn" data-action="backWelcome">Logout</button>
+                
+                <div id="teacherMainContent">
+                    <h4>📝 Registered Students (${students.length})</h4>
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%; font-size:0.85rem;">
+                            <tr style="background:#2c3e66; color:white;">
+                                <th>Roll No</th><th>Name</th><th>Father Name</th><th>Contact</th><th>Avg Score</th><th>Action</th>
+                            </tr>
+                            ${studentList}
+                        </table>
+                    </div>
+                    
+                    <hr style="margin:20px 0;">
+                    <h4>📊 Recent Results</h4>
+                    <div style="overflow-x:auto; max-height:300px; overflow-y:auto;">
+                        <table style="width:100%; font-size:0.8rem;">
+                            <tr style="background:#17a2b8; color:white;">
+                                <th>Date</th><th>Roll No</th><th>Name</th><th>Score</th><th>%</th><th>Time</th>
+                            </tr>
+                            ${resultsList}
+                        </table>
+                    </div>
+                </div>
+                <button class="back-btn" id="logoutBtn">🚪 Logout</button>
             </div>
         `;
     }
 
     function renderStudentLogin() {
+        let studentOptions = '<option value="">Select Roll No / Name</option>';
+        students.forEach(s => {
+            studentOptions += `<option value="${s.id}">${s.rollNo} - ${s.name}</option>`;
+        });
+        
         return `
             <div class="form-card">
                 <h3>📚 Student Login</h3>
                 <select id="studentSelect">
-                    <option value="">Select Roll No / Name</option>
-                    ${students.map(s => `<option value="${s.id}">${s.rollNo} - ${s.name}</option>`).join('')}
+                    ${studentOptions}
                 </select>
-                <button id="startTestBtn" class="btn btn-student" style="width:100%">Start Test</button>
-                <button id="newStudentBtn" class="btn" style="width:100%; margin-top:10px;">➕ New Student? Register Here</button>
-                <button class="back-btn" data-action="backWelcome">Back</button>
+                <button id="startTestBtn" class="btn btn-student" style="width:100%">🚀 Start Test</button>
+                <button id="newStudentBtn" class="btn btn-success" style="width:100%; margin-top:10px;">➕ New Student? Register Here</button>
+                <button class="back-btn" id="backFromStudentLogin">Back</button>
             </div>
         `;
     }
@@ -219,9 +276,9 @@
                 <input type="text" id="regName" placeholder="Full Name *">
                 <input type="text" id="regFatherName" placeholder="Father Name *">
                 <input type="tel" id="regContact" placeholder="Contact Number *">
-                <div class="warning">⚠️ All fields are required</div>
-                <button id="registerBtn" class="btn btn-success" style="width:100%">Register & Start Test</button>
-                <button class="back-btn" data-action="studentLogin">Back to Login</button>
+                <div class="warning">⚠️ All fields are required to register</div>
+                <button id="registerBtn" class="btn btn-success" style="width:100%">✅ Register & Start Test</button>
+                <button class="back-btn" id="backToStudentLogin">Back to Login</button>
             </div>
         `;
     }
@@ -252,26 +309,29 @@
     function renderStudentResult() {
         let r = currentStudent.currentResult;
         let percentage = Math.round((r.score / r.total) * 100);
+        let grade = percentage >= 80 ? "🌟 Excellent" : percentage >= 60 ? "👍 Good" : percentage >= 40 ? "📖 Need Improvement" : "⚠️ Poor";
+        
         return `
             <div class="result-card">
                 <div style="text-align:center; margin-bottom:15px;">
                     <div class="logo-preview" style="width:60px; height:60px; font-size:1.5rem;">🧪</div>
-                    <h2>🧪 Test Result</h2>
+                    <h2>🎓 Test Result</h2>
                 </div>
-                <p><strong>Student:</strong> ${escapeHtml(currentStudent.name)} (Roll No: ${currentStudent.rollNo})</p>
-                <p><strong>Father Name:</strong> ${escapeHtml(currentStudent.fatherName)}</p>
-                <p><strong>Contact:</strong> ${currentStudent.contact}</p>
+                <p><strong>📌 Student:</strong> ${escapeHtml(currentStudent.name)} (Roll No: ${currentStudent.rollNo})</p>
+                <p><strong>👨 Father Name:</strong> ${escapeHtml(currentStudent.fatherName)}</p>
+                <p><strong>📞 Contact:</strong> ${currentStudent.contact}</p>
                 <hr>
                 <h3>📊 Score: ${r.score} / ${r.total}</h3>
                 <h3>📈 Percentage: ${percentage}%</h3>
+                <h3>🏆 Grade: ${grade}</h3>
                 <p><strong>⏱️ Time Taken:</strong> ${Math.floor(r.timeTaken / 60)} minutes ${r.timeTaken % 60} seconds</p>
                 <hr>
-                <div><strong>❌ Incorrect Answers:</strong></div>
-                <ul>
-                    ${r.wrongList.map(w => `<li><strong>Q${w.qno}:</strong> ${escapeHtml(w.question)}<br>👉 Your answer: ${escapeHtml(w.yourAnswer)}<br>✅ Correct: ${escapeHtml(w.correctAnswer)}</li>`).join('')}
+                <div><strong>❌ Incorrect Answers (${r.wrongList.length}):</strong></div>
+                <ul style="margin-top:10px; max-height:200px; overflow-y:auto;">
+                    ${r.wrongList.map(w => `<li style="margin-bottom:10px;"><strong>Q${w.qno}:</strong> ${escapeHtml(w.question)}<br>👉 Your answer: ${escapeHtml(w.yourAnswer)}<br>✅ Correct: ${escapeHtml(w.correctAnswer)}</li>`).join('')}
                 </ul>
                 <button id="shareWhatsAppBtn" class="share-btn">📤 Share Result on WhatsApp</button>
-                <button class="back-btn" data-action="backWelcome">🏠 Back to Home</button>
+                <button class="back-btn" id="homeFromResult">🏠 Back to Home</button>
             </div>
         `;
     }
@@ -306,7 +366,6 @@
     }
 
     function autoMoveToNext() {
-        // Save current answer if any
         let selected = document.querySelector('input[name="mcq"]:checked');
         if (selected) {
             studentAnswers[currentQIndex] = parseInt(selected.value);
@@ -314,7 +373,6 @@
             studentAnswers[currentQIndex] = -1;
         }
         
-        // Move to next question or finish
         if (currentQIndex + 1 < activeQuestions.length) {
             currentQIndex++;
             timeLeft = 10;
@@ -328,7 +386,6 @@
     function finishTest() {
         clearInterval(timerInterval);
         
-        // Save last answer
         let selected = document.querySelector('input[name="mcq"]:checked');
         if (selected) {
             studentAnswers[currentQIndex] = parseInt(selected.value);
@@ -336,7 +393,6 @@
             studentAnswers[currentQIndex] = -1;
         }
         
-        // Calculate score
         let correctCount = 0;
         let wrongList = [];
         for (let i = 0; i < activeQuestions.length; i++) {
@@ -389,18 +445,11 @@
     }
 
     function attachEvents() {
-        // Welcome screen buttons
-        document.querySelectorAll("[data-action='teacherLogin']").forEach(el => {
-            el.onclick = () => { currentView = "teacherLogin"; render(); };
-        });
-        document.querySelectorAll("[data-action='studentLogin']").forEach(el => {
-            el.onclick = () => { currentView = "studentLogin"; render(); };
-        });
-        document.querySelectorAll("[data-action='backWelcome']").forEach(el => {
-            el.onclick = () => { currentView = "welcome"; render(); };
-        });
+        // Welcome screen
+        document.getElementById("teacherLoginBtn")?.addEventListener("click", () => { currentView = "teacherLogin"; render(); });
+        document.getElementById("studentLoginBtn")?.addEventListener("click", () => { currentView = "studentLogin"; render(); });
         
-        // Teacher verification
+        // Teacher login
         document.getElementById("verifyTeacherBtn")?.addEventListener("click", () => {
             let pass = document.getElementById("teacherPass").value;
             if (pass === "2247") {
@@ -410,46 +459,56 @@
                 alert("Wrong password! Use: 2247");
             }
         });
+        document.getElementById("backFromTeacherLogin")?.addEventListener("click", () => { currentView = "welcome"; render(); });
         
         // Teacher panel buttons
-        document.getElementById("addStudentBtn")?.addEventListener("click", () => {
-            currentView = "studentRegister";
-            render();
-        });
+        document.getElementById("addStudentBtn")?.addEventListener("click", () => { currentView = "studentRegister"; render(); });
+        document.getElementById("logoutBtn")?.addEventListener("click", () => { currentView = "welcome"; render(); });
         
-        document.getElementById("viewResultsBtn")?.addEventListener("click", () => {
+        document.getElementById("showResultsBtn")?.addEventListener("click", () => {
             if (results.length === 0) {
-                alert("No results yet!");
+                alert("No test results yet!");
                 return;
             }
-            let resultHtml = "<h4>📊 All Student Results</h4><div style='overflow-x:auto;'><table><tr><th>Date</th><th>Roll No</th><th>Name</th><th>Score</th><th>Percentage</th><th>Time</th></tr>";
-            results.slice().reverse().forEach(r => {
-                resultHtml += `<tr><td>${new Date(r.date).toLocaleDateString()}</td><td>${r.rollNo}</td><td>${r.studentName}</td><td>${r.score}/${r.total}</td><td>${r.percentage}%</td><td>${Math.floor(r.timeTaken/60)}:${r.timeTaken%60}</td></tr>`;
+            let resultHtml = "<h4>📊 Complete Results History</h4><div style='overflow-x:auto; max-height:400px; overflow-y:auto;'><table><th>Date</th><th>Roll No</th><th>Name</th><th>Score</th><th>%</th><th>Time</th><tr>";
+            [...results].reverse().forEach(r => {
+                resultHtml += `<tr><td>${new Date(r.date).toLocaleString()}</td><td>${r.rollNo}</td><td>${r.studentName}</td><td>${r.score}/${r.total}</td><td>${r.percentage}%</td><td>${Math.floor(r.timeTaken/60)}:${r.timeTaken%60}</td></tr>`;
             });
-            resultHtml += "</table></div><button id='closeResultsBtn' class='btn' style='margin-top:15px;'>Close</button>";
-            document.getElementById("teacherPanelContent")?.remove();
-            let panel = document.querySelector(".form-card");
-            let resultsDiv = document.createElement("div");
-            resultsDiv.innerHTML = resultHtml;
-            panel.appendChild(resultsDiv);
-            document.getElementById("closeResultsBtn")?.addEventListener("click", () => { render(); });
+            resultHtml += "}</div><button id='closeResults' class='btn' style='margin-top:15px;'>Close</button>";
+            let container = document.getElementById("teacherMainContent");
+            let originalContent = container.innerHTML;
+            container.innerHTML = resultHtml;
+            document.getElementById("closeResults")?.addEventListener("click", () => { container.innerHTML = originalContent; });
         });
         
         document.getElementById("resetAllBtn")?.addEventListener("click", () => {
-            if (confirm("⚠️ WARNING: This will delete ALL students and results! Continue?")) {
+            if (confirm("⚠️ WARNING: This will delete ALL students and ALL results! This cannot be undone. Continue?")) {
                 students = [];
                 results = [];
                 saveData();
-                alert("All data reset!");
+                alert("All data has been reset!");
                 render();
             }
+        });
+        
+        // Delete student buttons (dynamic)
+        document.querySelectorAll(".delete-student-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                let id = parseInt(btn.getAttribute("data-id"));
+                if (confirm("Delete this student and all their results?")) {
+                    students = students.filter(s => s.id !== id);
+                    results = results.filter(r => r.studentId !== id);
+                    saveData();
+                    render();
+                }
+            });
         });
         
         // Student login
         document.getElementById("startTestBtn")?.addEventListener("click", () => {
             let studentId = document.getElementById("studentSelect").value;
             if (!studentId) {
-                alert("Please select a student");
+                alert("Please select a student from the list");
                 return;
             }
             let student = students.find(s => s.id == studentId);
@@ -457,11 +516,8 @@
                 startTest(student);
             }
         });
-        
-        document.getElementById("newStudentBtn")?.addEventListener("click", () => {
-            currentView = "studentRegister";
-            render();
-        });
+        document.getElementById("newStudentBtn")?.addEventListener("click", () => { currentView = "studentRegister"; render(); });
+        document.getElementById("backFromStudentLogin")?.addEventListener("click", () => { currentView = "welcome"; render(); });
         
         // Student registration
         document.getElementById("registerBtn")?.addEventListener("click", () => {
@@ -472,6 +528,12 @@
             
             if (!rollNo || !name || !fatherName || !contact) {
                 alert("Please fill all fields");
+                return;
+            }
+            
+            // Check if roll number already exists
+            if (students.find(s => s.rollNo === rollNo)) {
+                alert("Roll Number already exists! Please use a different roll number.");
                 return;
             }
             
@@ -486,8 +548,9 @@
             saveData();
             startTest(newStudent);
         });
+        document.getElementById("backToStudentLogin")?.addEventListener("click", () => { currentView = "studentLogin"; render(); });
         
-        // Next question button
+        // Test navigation
         document.getElementById("nextQuestionBtn")?.addEventListener("click", () => {
             let selected = document.querySelector('input[name="mcq"]:checked');
             if (selected) {
@@ -509,10 +572,13 @@
         // Share result on WhatsApp
         document.getElementById("shareWhatsAppBtn")?.addEventListener("click", () => {
             let r = currentStudent.currentResult;
-            let msg = `🧪 Test Result - ${currentStudent.name} (Roll: ${currentStudent.rollNo})\n📊 Score: ${r.score}/${r.total}\n📈 Percentage: ${Math.round(r.score/r.total*100)}%\n⏱️ Time: ${Math.floor(r.timeTaken/60)} min ${r.timeTaken%60} sec\n🏫 Teachers Academy`;
+            let percentage = Math.round((r.score / r.total) * 100);
+            let msg = `🧪 CHEMISTRY TEST RESULT 🧪\n\nStudent: ${currentStudent.name}\nRoll No: ${currentStudent.rollNo}\nScore: ${r.score}/${r.total}\nPercentage: ${percentage}%\nTime: ${Math.floor(r.timeTaken/60)} min ${r.timeTaken%60} sec\n\n🏫 Teachers Academy Bahawalpur`;
             let url = `https://wa.me/?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         });
+        
+        document.getElementById("homeFromResult")?.addEventListener("click", () => { currentView = "welcome"; render(); });
     }
 
     loadData();
